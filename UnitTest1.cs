@@ -18,7 +18,11 @@ namespace TASk_loc1
         public void Test1()
         {
             driver.Navigate().GoToUrl("https://www.epam.com/");
+            driver.Manage().Window.Maximize();
             epam.Careers.Click();
+            epam.Keywords.SendKeys("c#");
+            epam.Location.Click();
+            //epam.All.Click();
         }
         
         public void Dispose()
