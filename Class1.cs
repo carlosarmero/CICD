@@ -14,9 +14,10 @@ namespace TASk_loc1
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
+        public string lang = "C#";
 
         public Class1(IWebDriver driver) {
-            this.driver = driver; wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
+            this.driver = driver; wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
         public IWebElement Cookies => wait.Until(d => d.FindElement(By.Id("onetrust-accept-btn-handler")));
@@ -27,28 +28,6 @@ namespace TASk_loc1
         public IWebElement Remote => wait.Until(d => d.FindElement(By.XPath("//*[@id=\"jobSearchFilterForm\"]/fieldset/div/p[1]")));
         public IWebElement Find => wait.Until(d => d.FindElement(By.CssSelector("#jobSearchFilterForm > button")));
         public IList<IWebElement> Items => wait.Until(d => d.FindElements(By.ClassName("search-result__item-controls")));
-
-        
-
-
-        /*
-        //try with colle
-        public IWebElement Liston()
-        {
-            var results = wait.Until(d => d.FindElements(By.ClassName("search-result__item")));
-
-            // Safely get the first result, return null if no results are found
-            if (results.Any())
-            {
-                return results.First();
-            }
-            else
-            {
-                return null; // Or handle as per your requirement (e.g., throw exception)
-            }
-        }*/
-
-
 
     }
 }
