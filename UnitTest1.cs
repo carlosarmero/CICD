@@ -9,7 +9,6 @@ namespace TASk_loc1
         private readonly IWebDriver driver;
         private readonly Class1 epam;
 
-
         public UnitTest1()
         { driver = new ChromeDriver(); epam = new Class1(driver); }
 
@@ -26,6 +25,13 @@ namespace TASk_loc1
             epam.All.Click();
             epam.Remote.Click();
             epam.Find.Click();
+            Thread.Sleep(1000);
+            epam.Items.Last().Click();
+            Thread.Sleep(5000);
+            // IWebElement lastt = epam.Liston();
+            //lastt.FindElement(By.XPath("//*[@id=\"main\"]/div[1]/div[2]/section/div[2]/div/div/section/ul/li[27]/div[3]/div/div/span/button"));
+            // Thread.Sleep(9000);
+            Assert.Contains("C#", driver.PageSource);
             Thread.Sleep(5000);
         }
         
