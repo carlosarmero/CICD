@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -10,14 +10,15 @@ using System.Threading.Tasks;
 
 namespace TASk_loc1
 {
-    internal class EpamPage
+    internal class EpamPage : IDisposable
     {
-        private readonly IWebDriver driver;
+        public readonly IWebDriver driver;
         private readonly WebDriverWait wait;
         public string lang = "C#";
 
-        public EpamPage(IWebDriver driver) {
-            this.driver = driver; wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+        public EpamPage() {
+            this.driver = new ChromeDriver(); 
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
         public IWebElement Cookies => wait.Until(d => d.FindElement(By.Id("onetrust-accept-btn-handler")));
@@ -28,6 +29,48 @@ namespace TASk_loc1
         public IWebElement Remote => wait.Until(d => d.FindElement(By.XPath("//*[@id=\"jobSearchFilterForm\"]/fieldset/div/p[1]")));
         public IWebElement Find => wait.Until(d => d.FindElement(By.CssSelector("#jobSearchFilterForm > button")));
         public IList<IWebElement> Items => wait.Until(d => d.FindElements(By.ClassName("search-result__item-controls")));
+        public void GoWeb()
+        {
+            driver.Navigate().GoToUrl("https://www.epam.com/");
+            driver.Manage().Window.Maximize();
+        }
+        public void AcceptCookies()
+        {
+            Cookies.Click();
+        }
+        public void OpenCareers()
+        {
+            Careers.Click();
+        }
+        public void EnterSearchTerm(string searchTerm)
+        {
+            Keywords.SendKeys(searchTerm);
+        }
+        public void AllLocations()
+        {
+            Location.Click();
+            All.Click();
+        }
+        public void ClickRemote()
+        {
+            Remote.Click();
+        }
+        public void Search()
+        {
+            Find.Click();
+        }
+        public void ClickLast()
+        {
+            Items.Last().Click();
+        }/*
+        public bool ContaininsTerm(string searchTerm)
+        {
+            return Items.Last(link => link.Text.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+        }*/
+        public void Dispose()
+        {
+            driver.Quit();
+        }
 
     }
 }
