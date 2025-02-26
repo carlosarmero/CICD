@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace TASk_loc1
 {
-    internal class Class1
+    internal class EpamPage
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
         public string lang = "C#";
 
-        public Class1(IWebDriver driver) {
+        public EpamPage(IWebDriver driver) {
             this.driver = driver; wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 

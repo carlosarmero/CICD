@@ -4,17 +4,17 @@ using OpenQA.Selenium.Chrome;
 
 namespace TASk_loc1
 {
-    public class UnitTest1 : IDisposable
+    public class CareerTest : IDisposable
     {
         private readonly IWebDriver driver;
-        private readonly Class1 epam;
+        private readonly EpamPage epam;
 
-        public UnitTest1()
-        { driver = new ChromeDriver(); epam = new Class1(driver); }
+        public CareerTest()
+        { driver = new ChromeDriver(); epam = new EpamPage(driver); }
 
 
         [Fact]
-        public void Test1()
+        public void TestCareers()
         {
             driver.Navigate().GoToUrl("https://www.epam.com/");
             driver.Manage().Window.Maximize();
