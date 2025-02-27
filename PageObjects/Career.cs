@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Task
+namespace TASk_loc1.PageObjects
 {
     class Career : IDisposable
     {

@@ -1,22 +1,22 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Task
+namespace TASk_loc1.PageObjects
 {
-    class Results : IDisposable
+    class LastPage : IDisposable
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
 
-        public Results(IWebDriver driver, WebDriverWait wait)
+        public LastPage(IWebDriver driver, WebDriverWait wait)
         {
             this.driver = driver;
             this.wait = wait;
         }
-        public IList<IWebElement> Items => wait.Until(d => d.FindElements(By.ClassName("search-result__item-controls")));
-        public void ClickLast()
+        public IWebElement body => wait.Until(d => d.FindElement(By.TagName("body")));
+        public string PageText()
         {
-            Items.Last().Click();
+            return body.Text.ToLower();
         }
         public void Dispose()
         {

@@ -1,8 +1,9 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using TASk_loc1.PageObjects;
 
-namespace Task
+namespace TASk_loc1.Tests
 {
     public class CareerTest
     {
