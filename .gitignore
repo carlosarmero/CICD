@@ -33,6 +33,10 @@ ehthumbs.db
 bin/
 obj/
 
+# Ignore .NET build outputs for net8.0
+bin/Debug/net8.0/
+obj/Debug/net8.0/
+
 # User-specific files
 *.user
 *.userosscache
