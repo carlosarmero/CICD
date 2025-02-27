@@ -16,6 +16,9 @@ namespace TASk_loc1.PageObjects
 
         public IWebElement Cookies => wait.Until(d => d.FindElement(By.Id("onetrust-accept-btn-handler")));
         public IWebElement Careers => wait.Until(d => d.FindElement(By.XPath("//*[@id=\"wrapper\"]/div[2]/div[1]/header/div/div/nav/ul/li[5]/span[1]/a")));
+        public IWebElement SearchButton => wait.Until(d => d.FindElement(By.XPath("//*[@id=\"wrapper\"]/div[2]/div[1]/header/div/div/ul/li[3]/div/button")));
+        public IWebElement SearchInput => wait.Until(d => d.FindElement(By.Name("q")));
+        public IWebElement FindButton => wait.Until(d => d.FindElement(By.CssSelector("#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div > ul > li:nth-child(3) > div > div > form > div.search-results__action-section > button")));
         public void GoWeb()
         {
             driver.Navigate().GoToUrl("https://www.epam.com/");
@@ -28,6 +31,18 @@ namespace TASk_loc1.PageObjects
         public void OpenCareers()
         {
             Careers.Click();
+        }
+        public void OpenSearch()
+        {
+            SearchButton.Click();
+        }
+        public void EnterSearchTerm(string searchTerm)
+        {
+            SearchInput.SendKeys(searchTerm);
+        }
+        public void SubmitSearch()
+        {
+            FindButton.Click();
         }
         public void Dispose()
         {
