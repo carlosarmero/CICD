@@ -9,7 +9,7 @@ namespace TASk_loc1
         private readonly EpamPage epam;
         private readonly Career epamCareers;
         private readonly Results epamResults;
-        private readonly LastPage lasts;
+        private readonly LastPage last;
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
 
@@ -23,6 +23,7 @@ namespace TASk_loc1
             epam = new EpamPage(driver, wait);
             epamCareers = new Career(driver, wait);
             epamResults = new Results(driver, wait);
+            last = new LastPage(driver, wait);
         }
 
 
@@ -41,11 +42,11 @@ namespace TASk_loc1
                 epamCareers.ClickRemote();
                 epamCareers.Search();
                 epamResults.ClickLast();
-                Assert.Contains(lang, "c# es lo q buscasmos en todo este texto, q debehtml ser la pagina escnaeada");
+                Assert.Contains(lang, last.PageText());
             }
             finally
             {
-                epamResults.Dispose();
+                last.Dispose();
             }
 
         }

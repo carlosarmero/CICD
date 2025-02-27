@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1
 {
-    internal class EpamPage : IDisposable
+    class EpamPage : IDisposable
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
