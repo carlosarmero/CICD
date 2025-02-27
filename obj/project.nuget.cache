@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gRyJiV8l1ro=",
+  "dgSpecHash": "rYkTuSMUgfs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\carlos herrerra\\source\\repos\\TASk loc1\\TASk loc1\\TASk loc1.csproj",
+  "projectFilePath": "C:\\Users\\carlos herrerra\\source\\repos\\TASk loc1\\TASk loc1\\Tasks.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlos herrerra\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\carlos herrerra\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",

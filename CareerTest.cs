@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
-namespace TASk_loc1
+namespace Task
 {
     public class CareerTest
     {

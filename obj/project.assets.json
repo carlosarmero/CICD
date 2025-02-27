@@ -5553,9 +5553,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\carlos herrerra\\source\\repos\\TASk loc1\\TASk loc1\\TASk loc1.csproj",
-      "projectName": "TASk loc1",
-      "projectPath": "C:\\Users\\carlos herrerra\\source\\repos\\TASk loc1\\TASk loc1\\TASk loc1.csproj",
+      "projectUniqueName": "C:\\Users\\carlos herrerra\\source\\repos\\TASk loc1\\TASk loc1\\Tasks.csproj",
+      "projectName": "Tasks",
+      "projectPath": "C:\\Users\\carlos herrerra\\source\\repos\\TASk loc1\\TASk loc1\\Tasks.csproj",
       "packagesPath": "C:\\Users\\carlos herrerra\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\carlos herrerra\\source\\repos\\TASk loc1\\TASk loc1\\obj\\",
       "projectStyle": "PackageReference",
