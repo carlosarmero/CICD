@@ -1,0 +1,64 @@
+﻿# User-specific files
+.idea/
+.vs/
+.vscode/
+
+# Windows Installer files
+Thumbs.db
+ehthumbs.db
+
+# Windows Installer logs
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]evelopment/
+[Dd]ebug-wp8/
+[Dd]ebug-full/
+[Dd]ebug-x86/
+[Dd]ebug-x64/
+[Dd]ebug-arm/
+[Dd]ebug-AnyCPU/
+[Dd]ebug-AnyCPU-32/
+[Dd]ebug-AnyCPU-64/
+
+[Dd]ist/
+[Dd]eploy/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# ASP.NET temporary files
+ASP.NET/
+*.compiled
+
+# NuGet packages directory
+/packages/
+
+# Logs
+*.log
+
+# Test results
+TestResults/
+
+# Rider settings
+.idea/
+
+# .NET Core files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio for Mac
+.vscode/
+
+# Ignore xUnit generated files
+xunit.runner.json
+xunit.runner.xml
