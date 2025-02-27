@@ -42,7 +42,7 @@ namespace TASk_loc1.Tests
             }
             finally
             {
-                page.Dispose();
+                globalResults.Dispose();
             }
         }
     }

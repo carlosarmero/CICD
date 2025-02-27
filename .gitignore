@@ -29,6 +29,10 @@ ehthumbs.db
 [Dd]ist/
 [Dd]eploy/
 
+# Ignore build directories
+bin/
+obj/
+
 # User-specific files
 *.user
 *.userosscache
