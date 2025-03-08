@@ -40,6 +40,7 @@ namespace TASk_loc1.Tests
                 epam.OpenCareers();
                 epamCareers.EnterSearchTerm(lang);
                 epamCareers.AllLocations();
+                epamCareers.AllLocation();
                 epamCareers.ClickRemote();
                 epamCareers.Search();
                 epamResults.ClickLast();
