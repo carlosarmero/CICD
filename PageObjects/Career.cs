@@ -24,13 +24,12 @@ namespace TASk_loc1.PageObjects
         {
             Keywords.SendKeys(searchTerm);
         }
-        public void AllLocations()
+        public void Locations()
         {
             Location.Click();
         }
         public void AllLocation()
         {
-            Thread.Sleep(2000);
             All.Click();
         }
         public void ClickRemote()

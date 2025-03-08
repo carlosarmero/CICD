@@ -39,7 +39,7 @@ namespace TASk_loc1.Tests
                 epam.AcceptCookies();
                 epam.OpenCareers();
                 epamCareers.EnterSearchTerm(lang);
-                epamCareers.AllLocations();
+                epamCareers.Locations();
                 epamCareers.AllLocation();
                 epamCareers.ClickRemote();
                 epamCareers.Search();
