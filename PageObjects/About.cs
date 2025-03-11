@@ -10,9 +10,6 @@ namespace TASk_loc1.PageObjects
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
-
-        private readonly string _downloadDirectory;
-
         public About(IWebDriver driver, WebDriverWait wait)
         {
             this.driver = driver;
