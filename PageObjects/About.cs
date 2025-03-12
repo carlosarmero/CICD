@@ -23,7 +23,6 @@ namespace TASk_loc1.PageObjects
         public void ClickDown()
         {
             DownButton.Click();
-            Thread.Sleep(1200);
         }
         public void Dispose()
         {
