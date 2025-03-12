@@ -22,7 +22,8 @@ namespace TASk_loc1.PageObjects
         public IWebElement FindButton => wait.Until(d => d.FindElement(By.CssSelector("#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div > ul > li:nth-child(3) > div > div > form > div.search-results__action-section > button")));
 
         public IWebElement About => wait.Until(d => d.FindElement(By.XPath("//li[contains(@class, 'top-navigation__item')]/span/a[contains(@href, 'about')]")));
-        
+
+        public IWebElement Insights => wait.Until(d => d.FindElement(By.XPath("//li[contains(@class, 'top-navigation__item')]/span/a[contains(@href, 'insights')]")));
 
 
         public void GoWeb()
@@ -54,6 +55,11 @@ namespace TASk_loc1.PageObjects
         public void OpenAbout()
         {
             About.Click();
+        }
+
+        public void OpenInsights()
+        {
+            Insights.Click();
         }
         public void Dispose()
         {

@@ -18,10 +18,7 @@ namespace TASk_loc1.Tests
         {
             _downloadDirectory = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName, "Downloads");
             var options = new ChromeOptions();
-            options.AddUserProfilePreference("download.default_directory", _downloadDirectory); // Set download path to TestDownloads folder
-            //options.AddUserProfilePreference("download.prompt_for_download", false);
-            //options.AddUserProfilePreference("safebrowsing.enabled", true);
-
+            options.AddUserProfilePreference("download.default_directory", _downloadDirectory);
             driver = new ChromeDriver(options);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(5);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
@@ -43,13 +40,9 @@ namespace TASk_loc1.Tests
                 epam.OpenAbout();
                 about.ScrollGlance();
                 about.ClickDown();
-                Thread.Sleep(4000);
-
                 string[] downloadedFiles = Directory.GetFiles(_downloadDirectory);
                 bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
                 Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
-
-                // Assert.Contains(filename, downloadedFiles.ToString());
             }
             finally
             {
