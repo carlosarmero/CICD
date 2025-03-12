@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-using System;
-using System.IO;
-
 namespace TASk_loc1.PageObjects
 {
     class Insights : IDisposable
@@ -28,7 +25,6 @@ namespace TASk_loc1.PageObjects
         {
             return Article.Text.ToLower();
         }
-
         public void ReadMore()
         {
             ReadMoreButton.Click();

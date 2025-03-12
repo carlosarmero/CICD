@@ -13,7 +13,7 @@ namespace TASk_loc1.Tests
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
         public CarouselTest()
-        { 
+        {
             driver = new ChromeDriver();
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(5);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
@@ -25,9 +25,8 @@ namespace TASk_loc1.Tests
         }
 
 
-        [Theory]
-        [InlineData("nope")]
-        public void TestCareers(string filename)
+        [Fact]
+        public void TestCareers()
         {
             try
             {
@@ -36,7 +35,6 @@ namespace TASk_loc1.Tests
                 epam.OpenInsights();
                 insights.ClickArrow();
                 string articleTitle = insights.GetText();
-                Thread.Sleep(500);
                 insights.ReadMore();
                 string articlePageTitle = article.GetText();
                 Assert.Equal(articleTitle, articlePageTitle);

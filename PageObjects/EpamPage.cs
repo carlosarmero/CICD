@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using static OpenQA.Selenium.BiDi.Modules.Input.Wheel;
 
 namespace TASk_loc1.PageObjects
 {

@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-using System;
-using System.IO;
-
 namespace TASk_loc1.PageObjects
 {
     class About : IDisposable
@@ -23,7 +20,7 @@ namespace TASk_loc1.PageObjects
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", Glance);
         }
 
-        public void ClickDown() 
+        public void ClickDown()
         {
             DownButton.Click();
         }
