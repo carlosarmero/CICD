@@ -70,5 +70,6 @@ artifacts/
 # Ignore xUnit generated files
 xunit.runner.json
 xunit.runner.xml
+
 # Ignore AssemblyInfo.cs files
 **/Properties/AssemblyInfo.cs
