@@ -3,11 +3,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
 {
-    class Insights : IDisposable
+    class InsightsPage : IDisposable
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
-        public Insights(IWebDriver driver, WebDriverWait wait)
+        public InsightsPage(IWebDriver driver, WebDriverWait wait)
         {
             this.driver = driver;
             this.wait = wait;

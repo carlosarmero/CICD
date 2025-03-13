@@ -8,7 +8,7 @@ namespace TASk_loc1.Tests
     public class CarouselTest
     {
         private readonly EpamPage epam;
-        private readonly Insights insights;
+        private readonly InsightsPage insights;
         private readonly Article article;
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
@@ -20,7 +20,7 @@ namespace TASk_loc1.Tests
             driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(60);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             epam = new EpamPage(driver, wait);
-            insights = new Insights(driver, wait);
+            insights = new InsightsPage(driver, wait);
             article = new Article(driver, wait);
         }
 

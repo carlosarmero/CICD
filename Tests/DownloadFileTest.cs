@@ -5,16 +5,16 @@ using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
 {
-    public class DownTest
+    public class DownloadFileTest
     {
         private readonly EpamPage epam;
-        private readonly About about;
+        private readonly AboutPage about;
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
 
         private readonly string _downloadDirectory;
 
-        public DownTest()
+        public DownloadFileTest()
         {
             _downloadDirectory = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName, "Downloads");
             var options = new ChromeOptions();
@@ -25,7 +25,7 @@ namespace TASk_loc1.Tests
             driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(60);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             epam = new EpamPage(driver, wait);
-            about = new About(driver, wait);
+            about = new AboutPage(driver, wait);
         }
 
 
@@ -38,8 +38,8 @@ namespace TASk_loc1.Tests
                 epam.GoWeb();
                 epam.AcceptCookies();
                 epam.OpenAbout();
-                about.ScrollGlance();
-                about.ClickDown();
+                about.ScrollToGlance();
+                about.ClickDownload();
                 string[] downloadedFiles = Directory.GetFiles(_downloadDirectory);
                 bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
                 Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
