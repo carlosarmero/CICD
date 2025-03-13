@@ -5,7 +5,7 @@ using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
 {
-    public class CareerTest
+    public class CareerTest : IDisposable
     {
         private readonly EpamPage epam;
         private readonly CareerPage epamCareers;
@@ -27,31 +27,25 @@ namespace TASk_loc1.Tests
             last = new LastResultPage(driver, wait);
         }
 
-
         [Theory]
         [InlineData("c#")]
         [InlineData("html")]
         public void TestCareers(string lang)
         {
-            try
-            {
-                epam.GoWeb();
-                epam.AcceptCookies();
-                epam.OpenCareers();
-                epamCareers.EnterSearchTerm(lang);
-                epamCareers.Locations();
-                epamCareers.AllLocation();
-                epamCareers.ClickRemote();
-                epamCareers.Search();
-                epamResults.ClickLast();
-                Assert.Contains(lang, last.GetPageText());
-            }
-            finally
-            {
-                last.Dispose();
-            }
-
+            epam.GoWeb();
+            epam.AcceptCookies();
+            epam.OpenCareers();
+            epamCareers.EnterSearchTerm(lang);
+            epamCareers.Locations();
+            epamCareers.AllLocation();
+            epamCareers.ClickRemote();
+            epamCareers.Search();
+            epamResults.ClickLast();
+            Assert.Contains(lang, last.GetPageText());
         }
-
+        public void Dispose()
+        {
+            last.Dispose();
+        }
     }
 }

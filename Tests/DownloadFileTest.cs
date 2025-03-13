@@ -5,7 +5,7 @@ using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
 {
-    public class DownloadFileTest
+    public class DownloadFileTest : IDisposable
     {
         private readonly EpamPage epam;
         private readonly AboutPage about;
@@ -33,22 +33,18 @@ namespace TASk_loc1.Tests
         [InlineData("EPAM_Corporate_Overview_Q4FY-2024")]
         public void TestCareers(string filename)
         {
-            try
-            {
-                epam.GoWeb();
-                epam.AcceptCookies();
-                epam.OpenAbout();
-                about.ScrollToGlance();
-                about.ClickDownload();
-                string[] downloadedFiles = Directory.GetFiles(_downloadDirectory);
-                bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
-                Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
-            }
-            finally
-            {
-                epam.Dispose();
-            }
-
+            epam.GoWeb();
+            epam.AcceptCookies();
+            epam.OpenAbout();
+            about.ScrollToGlance();
+            about.ClickDownload();
+            string[] downloadedFiles = Directory.GetFiles(_downloadDirectory);
+            bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
+            Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
+        }
+        public void Dispose()
+        {
+            about.Dispose();
         }
 
     }

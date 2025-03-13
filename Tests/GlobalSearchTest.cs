@@ -5,7 +5,7 @@ using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
 {
-    public class GlobalSearchTest
+    public class GlobalSearchTest : IDisposable
     {
         private readonly EpamPage page;
         private readonly GlobalResults globalResults;
@@ -23,27 +23,23 @@ namespace TASk_loc1.Tests
             globalResults = new GlobalResults(driver, wait);
         }
 
-
         [Theory]
         [InlineData("BLOCKCHAIN")]
         [InlineData("Cloud")]
         [InlineData("Automation")]
         public void SearchTest(string word)
         {
-            try
-            {
-                page.GoWeb();
-                page.AcceptCookies();
-                page.OpenSearch();
-                page.EnterSearchTerm(word);
-                page.SubmitSearch();
-                Assert.True(globalResults.AreAllResultsContainingTerm(word),
-                        $"Not all links contain the search term '{word}'");
-            }
-            finally
-            {
-                globalResults.Dispose();
-            }
+            page.GoWeb();
+            page.AcceptCookies();
+            page.OpenSearch();
+            page.EnterSearchTerm(word);
+            page.SubmitSearch();
+            Assert.True(globalResults.AreAllResultsContainingTerm(word),
+                    $"Not all links contain the search term '{word}'");           
+        }
+        public void Dispose()
+        {
+            globalResults.Dispose();
         }
     }
 }

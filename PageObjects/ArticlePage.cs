@@ -13,7 +13,7 @@ namespace TASk_loc1.PageObjects
             this.wait = wait;
         }
         public IWebElement Title => wait.Until(d => d.FindElement(By.XPath("//p[contains(@class, 'scaling-of-text-wrapper')]")));
-        public string GetText()
+        public string GetTitleText()
         {
             return Title.Text.ToLower();
         }

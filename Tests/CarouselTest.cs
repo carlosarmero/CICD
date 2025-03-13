@@ -3,9 +3,9 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using TASk_loc1.PageObjects;
 
-namespace TASk_loc1.Tests
+namespace TASk_loc1.Tests 
 {
-    public class CarouselTest
+    public class CarouselTest : IDisposable
     {
         private readonly EpamPage epam;
         private readonly InsightsPage insights;
@@ -24,26 +24,21 @@ namespace TASk_loc1.Tests
             article = new Article(driver, wait);
         }
 
-
         [Fact]
         public void TestCareers()
         {
-            try
-            {
-                epam.GoWeb();
-                epam.AcceptCookies();
-                epam.OpenInsights();
-                insights.ClickArrow();
-                string articleTitle = insights.GetText();
-                insights.ReadMore();
-                string articlePageTitle = article.GetText();
-                Assert.Equal(articleTitle, articlePageTitle);
-            }
-            finally
-            {
-                epam.Dispose();
-            }
-
+            epam.GoWeb();
+            epam.AcceptCookies();
+            epam.OpenInsights();
+            insights.ClickArrow();
+            string articleTitle = insights.GetArticleTitle();
+            insights.ReadMore();
+            string articlePageTitle = article.GetTitleText();
+            Assert.Equal(articleTitle, articlePageTitle);
+        }
+        public void Dispose()
+        {
+            article.Dispose();
         }
 
     }

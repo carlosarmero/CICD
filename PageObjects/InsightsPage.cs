@@ -13,7 +13,7 @@ namespace TASk_loc1.PageObjects
             this.wait = wait;
         }
         public IWebElement Arrow => wait.Until(d => d.FindElement(By.XPath("//button[contains(@class, 'slider__right-arrow slider-navigation-arrow')]")));
-        public IWebElement Article => wait.Until(d => d.FindElement(By.XPath("//span[contains(@class, 'rte-text-gradient gradient-text')]")));
+        public IWebElement ArticleTitle => wait.Until(d => d.FindElement(By.XPath("//span[contains(@class, 'rte-text-gradient gradient-text')]")));
         public IWebElement ReadMoreButton => wait.Until(d => d.FindElement(By.XPath("/html/body/div[2]/main/div[1]/div[1]/div/div[1]/div[1]/div/div[6]/div/div/div/div[2]/a")));
 
         public void ClickArrow()
@@ -21,9 +21,9 @@ namespace TASk_loc1.PageObjects
             Arrow.Click();
             Arrow.Click();
         }
-        public string GetText()
+        public string GetArticleTitle()
         {
-            return Article.Text.ToLower();
+            return ArticleTitle.Text.ToLower();
         }
         public void ReadMore()
         {
