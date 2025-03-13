@@ -19,9 +19,7 @@ namespace TASk_loc1.PageObjects
         public IWebElement SearchButton => wait.Until(d => d.FindElement(By.XPath("//div[contains(@class, 'header-search-ui header-search-ui-23 header__control')]/button")));
         public IWebElement SearchInput => wait.Until(d => d.FindElement(By.Name("q")));
         public IWebElement FindButton => wait.Until(d => d.FindElement(By.CssSelector("#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div > ul > li:nth-child(3) > div > div > form > div.search-results__action-section > button")));
-
         public IWebElement About => wait.Until(d => d.FindElement(By.XPath("//li[contains(@class, 'top-navigation__item')]/span/a[contains(@href, 'about')]")));
-
         public IWebElement Insights => wait.Until(d => d.FindElement(By.XPath("//li[contains(@class, 'top-navigation__item')]/span/a[contains(@href, 'insights')]")));
 
 
@@ -50,12 +48,10 @@ namespace TASk_loc1.PageObjects
         {
             FindButton.Click();
         }
-
         public void OpenAbout()
         {
             About.Click();
         }
-
         public void OpenInsights()
         {
             Insights.Click();

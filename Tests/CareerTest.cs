@@ -8,9 +8,9 @@ namespace TASk_loc1.Tests
     public class CareerTest
     {
         private readonly EpamPage epam;
-        private readonly Career epamCareers;
-        private readonly Results epamResults;
-        private readonly LastPage last;
+        private readonly CareerPage epamCareers;
+        private readonly CareerResults epamResults;
+        private readonly LastResultPage last;
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
 
@@ -22,9 +22,9 @@ namespace TASk_loc1.Tests
             driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(60);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             epam = new EpamPage(driver, wait);
-            epamCareers = new Career(driver, wait);
-            epamResults = new Results(driver, wait);
-            last = new LastPage(driver, wait);
+            epamCareers = new CareerPage(driver, wait);
+            epamResults = new CareerResults(driver, wait);
+            last = new LastResultPage(driver, wait);
         }
 
 
@@ -44,7 +44,7 @@ namespace TASk_loc1.Tests
                 epamCareers.ClickRemote();
                 epamCareers.Search();
                 epamResults.ClickLast();
-                Assert.Contains(lang, last.PageText());
+                Assert.Contains(lang, last.GetPageText());
             }
             finally
             {
