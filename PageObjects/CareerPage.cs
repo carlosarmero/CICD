@@ -20,24 +20,12 @@ namespace TASk_loc1.PageObjects
         public IWebElement Remote => wait.Until(d => d.FindElement(By.XPath("//div[contains(@class, 'job-search__filter-list')]/p[contains(@class, 'job-search__filter-items job-search__filter-items--remote')]")));////*[@id=\"jobSearchFilterForm\"]/fieldset/div/p[1] 
         public IWebElement Find => wait.Until(d => d.FindElement(By.CssSelector("#jobSearchFilterForm > button")));
 
-        public void EnterSearchTerm(string searchTerm)
+        public void SearchDetails(string searchTerm)
         {
             Keywords.SendKeys(searchTerm);
-        }
-        public void Locations()
-        {
             Location.Click();
-        }
-        public void AllLocation()
-        {
             All.Click();
-        }
-        public void ClickRemote()
-        {
             Remote.Click();
-        }
-        public void Search()
-        {
             Find.Click();
         }
         public void Dispose()

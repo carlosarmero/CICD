@@ -31,9 +31,7 @@ namespace TASk_loc1.Tests
         {
             page.GoWeb();
             page.AcceptCookies();
-            page.OpenSearch();
-            page.EnterSearchTerm(word);
-            page.SubmitSearch();
+            page.GlobalSearchInfo(word);
             Assert.True(globalResults.AreAllResultsContainingTerm(word),
                     $"Not all links contain the search term '{word}'");           
         }

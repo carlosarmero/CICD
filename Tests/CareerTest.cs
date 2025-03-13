@@ -35,11 +35,7 @@ namespace TASk_loc1.Tests
             epam.GoWeb();
             epam.AcceptCookies();
             epam.OpenCareers();
-            epamCareers.EnterSearchTerm(lang);
-            epamCareers.Locations();
-            epamCareers.AllLocation();
-            epamCareers.ClickRemote();
-            epamCareers.Search();
+            epamCareers.SearchDetails(lang);
             epamResults.ClickLast();
             Assert.Contains(lang, last.GetPageText());
         }

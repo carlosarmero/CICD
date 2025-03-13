@@ -36,16 +36,10 @@ namespace TASk_loc1.PageObjects
         {
             Careers.Click();
         }
-        public void OpenSearch()
+        public void GlobalSearchInfo(string searchTerm)
         {
             SearchButton.Click();
-        }
-        public void EnterSearchTerm(string searchTerm)
-        {
             SearchInput.SendKeys(searchTerm);
-        }
-        public void SubmitSearch()
-        {
             FindButton.Click();
         }
         public void OpenAbout()
