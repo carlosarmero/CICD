@@ -16,7 +16,9 @@ namespace TASk_loc1.Tests
 
         public DownloadFileTest()
         {
-            _downloadDirectory = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName, "Downloads");
+            _downloadDirectory = Path.Combine(
+                Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
+                "Downloads");
             var options = new ChromeOptions();
             options.AddUserProfilePreference("download.default_directory", _downloadDirectory);
             driver = new ChromeDriver(options);
