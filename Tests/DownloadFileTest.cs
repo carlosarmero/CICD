@@ -38,7 +38,6 @@ namespace TASk_loc1.Tests
             epam.OpenAbout();
             about.ScrollToGlance();
             about.ClickDownload();
-            Thread.Sleep(2000);
             string[] downloadedFiles = Directory.GetFiles(_downloadDirectory);
             bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
             Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
