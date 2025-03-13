@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
@@ -14,7 +15,7 @@ namespace TASk_loc1.PageObjects
         }
         public IWebElement Arrow => wait.Until(d => d.FindElement(By.XPath("//button[contains(@class, 'slider__right-arrow slider-navigation-arrow')]")));
         public IWebElement ArticleTitle => wait.Until(d => d.FindElement(By.XPath("//span[contains(@class, 'rte-text-gradient gradient-text')]")));
-        public IWebElement ReadMoreButton => wait.Until(d => d.FindElement(By.XPath("/html/body/div[2]/main/div[1]/div[1]/div/div[1]/div[1]/div/div[6]/div/div/div/div[2]/a")));
+        public IWebElement ReadMoreButton => wait.Until(d => d.FindElement(By.XPath("//div[contains(@class, 'single-slide-ui')]/div/div/a")));
 
         public void ClickArrow()
         {
@@ -27,7 +28,7 @@ namespace TASk_loc1.PageObjects
         }
         public void ReadMore()
         {
-            ReadMoreButton.Click();
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", ReadMoreButton);
         }
         public void Dispose()
         {
