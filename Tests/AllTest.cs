@@ -3,9 +3,8 @@ using Xunit;
 
 namespace TASk_loc1.Tests
 {
-    public class AllTest : WebDriverService
+    public class AllTest : BaseTest
     {
-        private readonly EpamPage epam;
         private readonly CareerPage epamCareers;
         private readonly CareerResults epamResults;
         private readonly LastResultPage last;
@@ -13,10 +12,8 @@ namespace TASk_loc1.Tests
         private readonly AboutPage about;
         private readonly InsightsPage insights;
         private readonly Article article;
-
-        public AllTest()
+        public AllTest(): base() 
         {
-            epam = new EpamPage(driver, wait);
             epamCareers = new CareerPage(driver, wait);
             epamResults = new CareerResults(driver, wait);
             last = new LastResultPage(driver, wait);
@@ -31,9 +28,8 @@ namespace TASk_loc1.Tests
         [InlineData("html")]
         public void CareersTest(string lang)
         {
-            epam.GoWeb();
-            epam.AcceptCookies();
-            epam.OpenCareers();
+            InitializeBrowser();
+            OpenCareersPage();
             epamCareers.SearchDetails(lang);
             epamResults.ClickLast();
             Assert.Contains(lang, last.GetPageText());
@@ -45,9 +41,8 @@ namespace TASk_loc1.Tests
         [InlineData("Automation")]
         public void SearchTest(string word)
         {
-            epam.GoWeb();
-            epam.AcceptCookies();
-            epam.GlobalSearchInfo(word);
+            InitializeBrowser();
+            PerformGlobalSearch(word);
             Assert.True(globalResults.AreAllResultsContainingTerm(word),
                     $"Not all links contain the search term '{word}'");
         }
@@ -56,9 +51,8 @@ namespace TASk_loc1.Tests
         [InlineData("EPAM_Corporate_Overview_Q4FY-2024")]
         public void DownloadTest(string filename)
         {
-            epam.GoWeb();
-            epam.AcceptCookies();
-            epam.OpenAbout();
+            InitializeBrowser();
+            OpenAboutPage();
             about.ScrollToGlance();
             about.ClickDownload();
             about.ScrollToTeam();
@@ -70,9 +64,8 @@ namespace TASk_loc1.Tests
         [Fact]
         public void CarouselTest()
         {
-            epam.GoWeb();
-            epam.AcceptCookies();
-            epam.OpenInsights();
+            InitializeBrowser();
+            OpenInsightsPage();
             insights.ClickArrow();
             string articleTitle = insights.GetArticleTitle();
             insights.ReadMore();

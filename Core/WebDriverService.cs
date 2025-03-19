@@ -12,12 +12,12 @@ namespace TASk_loc1.Tests
 		protected WebDriverWait wait ;
 		protected string downloadDirectory;
 
-		public WebDriverService(bool headless = true)
+		public WebDriverService(bool headless = false)
 		{
 			downloadDirectory = Path.Combine(
                 Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
                 "Downloads");
-            driver = BrowserFactory.CreateWebDriver("edge", downloadDirectory, headless);
+            driver = BrowserFactory.CreateWebDriver("chrome", downloadDirectory, headless);
 			wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 		}
 		public void Dispose()
