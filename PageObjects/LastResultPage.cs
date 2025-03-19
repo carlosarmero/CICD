@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
 {
-    class LastResultPage : IDisposable
+    class LastResultPage
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
@@ -17,10 +17,6 @@ namespace TASk_loc1.PageObjects
         public string GetPageText()
         {
             return body.Text.ToLower();
-        }
-        public void Dispose()
-        {
-            driver.Quit();
         }
     }
 }

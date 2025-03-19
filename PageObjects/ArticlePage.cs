@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
 {
-    class Article : IDisposable
+    class Article
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
@@ -16,10 +16,6 @@ namespace TASk_loc1.PageObjects
         public string GetTitleText()
         {
             return Title.Text.ToLower();
-        }
-        public void Dispose()
-        {
-            driver.Quit();
         }
     }
 }

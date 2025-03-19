@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
 {
-    class InsightsPage : IDisposable
+    class InsightsPage
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
@@ -29,10 +29,6 @@ namespace TASk_loc1.PageObjects
         public void ReadMore()
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", ReadMoreButton);
-        }
-        public void Dispose()
-        {
-            driver.Quit();
         }
     }
 }

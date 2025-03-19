@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
 {
-    class EpamPage : IDisposable
+    class EpamPage
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
@@ -50,10 +50,5 @@ namespace TASk_loc1.PageObjects
         {
             Insights.Click();
         }
-        public void Dispose()
-        {
-            driver.Quit();
-        }
-
     }
 }

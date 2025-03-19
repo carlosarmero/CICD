@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
 {
-    class CareerResults : IDisposable
+    class CareerResults
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
@@ -17,10 +17,6 @@ namespace TASk_loc1.PageObjects
         public void ClickLast()
         {
             Items.Last().Click();
-        }
-        public void Dispose()
-        {
-            driver.Quit();
         }
     }
 }

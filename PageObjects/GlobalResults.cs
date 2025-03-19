@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
 {
-    class GlobalResults : IDisposable
+    class GlobalResults
     {
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
@@ -18,10 +18,5 @@ namespace TASk_loc1.PageObjects
         {
             return Results.All(link => link.Text.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
         }
-        public void Dispose()
-        {
-            driver.Quit();
-        }
-
     }
 }

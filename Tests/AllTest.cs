@@ -1,11 +1,9 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using TASk_loc1.PageObjects;
+using Xunit;
 
 namespace TASk_loc1.Tests
 {
-    public class AllTests : IDisposable
+    public class AllTest : WebDriverService
     {
         private readonly EpamPage epam;
         private readonly CareerPage epamCareers;
@@ -13,24 +11,11 @@ namespace TASk_loc1.Tests
         private readonly LastResultPage last;
         private readonly GlobalResults globalResults;
         private readonly AboutPage about;
-        private readonly string _downloadDirectory;
         private readonly InsightsPage insights;
         private readonly Article article;
-        private readonly IWebDriver driver;
-        private readonly WebDriverWait wait;
 
-        public AllTests()
+        public AllTest()
         {
-            _downloadDirectory = Path.Combine(
-                Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
-                "Downloads");
-            var options = new ChromeOptions();
-            options.AddUserProfilePreference("download.default_directory", _downloadDirectory);
-            driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(5);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(60);
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             epam = new EpamPage(driver, wait);
             epamCareers = new CareerPage(driver, wait);
             epamResults = new CareerResults(driver, wait);
@@ -76,7 +61,8 @@ namespace TASk_loc1.Tests
             epam.OpenAbout();
             about.ScrollToGlance();
             about.ClickDownload();
-            string[] downloadedFiles = Directory.GetFiles(_downloadDirectory);
+            about.ScrollToTeam();
+            string[] downloadedFiles = Directory.GetFiles(downloadDirectory);
             bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
             Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
         }
@@ -92,10 +78,6 @@ namespace TASk_loc1.Tests
             insights.ReadMore();
             string articlePageTitle = article.GetTitleText();
             Assert.Equal(articleTitle, articlePageTitle);
-        }
-        public void Dispose()
-        {
-            epam.Dispose();
         }
     }
 }
