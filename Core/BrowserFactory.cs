@@ -8,7 +8,7 @@ namespace TASk_loc1.Core
 {
     public static class BrowserFactory
     {
-        public static IWebDriver CreateWebDriver(string browserType, bool headless = true)
+        public static IWebDriver CreateWebDriver(string browserType, string downloadDirectory, bool headless = true)
         {
             IWebDriver driver;
 
@@ -19,9 +19,8 @@ namespace TASk_loc1.Core
                     if (headless)
                     {
                         chromeOptions.AddArgument("--headless");
-                        chromeOptions.AddArgument("--disable-gpu");
-                        chromeOptions.AddArgument("--window-size=1920,1080");
                     }
+                    chromeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
                     driver = new ChromeDriver(chromeOptions);
                     break;
 
@@ -31,6 +30,7 @@ namespace TASk_loc1.Core
                     {
                         firefoxOptions.AddArgument("--headless");
                     }
+                    firefoxOptions.AddAdditionalOption("download.default_directory", downloadDirectory);
                     driver = new FirefoxDriver(firefoxOptions);
                     break;
 
@@ -41,6 +41,7 @@ namespace TASk_loc1.Core
                         edgeOptions.AddArgument("--headless");
                     }
                     driver = new EdgeDriver(edgeOptions);
+                    edgeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
                     break;
 
                 default:
