@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace TASk_loc1.Tests
 {
-    public class AllTest : BaseTest
+    public class AllTest : BaseTest, IDisposable
     {
         private readonly CareerPage epamCareers;
         private readonly CareerResults epamResults;
@@ -14,6 +14,8 @@ namespace TASk_loc1.Tests
         private readonly AboutPage about;
         private readonly InsightsPage insights;
         private readonly Article article;
+
+        private bool _testFailed;
         public AllTest(): base() 
         {
             epamCareers = new CareerPage(driver, wait);
@@ -23,6 +25,7 @@ namespace TASk_loc1.Tests
             about = new AboutPage(driver, wait);
             insights = new InsightsPage(driver, wait);
             article = new Article(driver, wait);
+            _testFailed = false;
         }
 
         [Theory]
@@ -30,12 +33,20 @@ namespace TASk_loc1.Tests
         [InlineData("html")]
         public void CareersTest(string lang)
         {
+            try
+            {
             Log.Information("Starting Career test");
             InitializeBrowser();
             OpenCareersPage();
             epamCareers.SearchDetails(lang);
             epamResults.ClickLast();
             Assert.Contains(lang, last.GetPageText());
+            }
+            catch (Exception)
+            {
+                _testFailed = true;
+                throw;
+            }
         }
 
         [Theory]
@@ -44,18 +55,28 @@ namespace TASk_loc1.Tests
         [InlineData("Automation")]
         public void SearchTest(string word)
         {
-            Log.Information("Starting Global search test");
-            InitializeBrowser();
-            PerformGlobalSearch(word);
-            Assert.True(globalResults.AreAllResultsContainingTerm(word),
-                    $"Not all links contain the search term '{word}'");
+            try
+            {
+                Log.Information("Starting Global search test");
+                InitializeBrowser();
+                PerformGlobalSearch(word);
+                Assert.True(globalResults.AreAllResultsContainingTerm(word),
+                        $"Not all links contain the search term '{word}'");
+            }
+            catch (Exception)
+            {
+                _testFailed = true;
+                throw;
+            }
         }
 
         [Theory]
         [InlineData("EPAM_Corporate_Overview_Q4FY-2024")]
         public void DownloadTest(string filename)
         {
-            Log.Information("Starting Download pdf test");
+            try
+            {
+                Log.Information("Starting Download pdf test");
             InitializeBrowser();
             OpenAboutPage();
             about.ScrollToGlance();
@@ -64,12 +85,20 @@ namespace TASk_loc1.Tests
             string[] downloadedFiles = Directory.GetFiles(downloadDirectory);
             bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
             Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
+            }
+            catch (Exception)
+            {
+                _testFailed = true;
+                throw;
+            }
         }
 
         [Fact]
         public void CarouselTest()
         {
-            Log.Information("Starting Carousel test");
+            try
+            {
+                Log.Information("Starting Carousel test");
             InitializeBrowser();
             OpenInsightsPage();
             insights.ClickArrow();
@@ -77,6 +106,18 @@ namespace TASk_loc1.Tests
             insights.ReadMore();
             string articlePageTitle = article.GetTitleText();
             Assert.Equal(articleTitle, articlePageTitle);
+            }
+            catch (Exception)
+            {
+                _testFailed = true;
+                throw;
+            }
+        }
+        public void Dispose()
+        {
+            if (_testFailed) { TakeBrowserScreenshot(driver as ITakesScreenshot);}
+            driver.Quit();
+            driver.Dispose();
         }
     }
 }
