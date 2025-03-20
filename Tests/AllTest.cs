@@ -42,9 +42,10 @@ namespace TASk_loc1.Tests
             epamResults.ClickLast();
             Assert.Contains(lang, last.GetPageText());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _testFailed = true;
+                Log.Error(ex, $"Error durante la prueba con {lang}", ex.Message);
                 throw;
             }
         }
@@ -63,9 +64,10 @@ namespace TASk_loc1.Tests
                 Assert.True(globalResults.AreAllResultsContainingTerm(word),
                         $"Not all links contain the search term '{word}'");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _testFailed = true;
+                Log.Error(ex, $"Error durante la prueba con {word}", ex.Message);
                 throw;
             }
         }
@@ -77,18 +79,19 @@ namespace TASk_loc1.Tests
             try
             {
                 Log.Information("Starting Download pdf test");
-            InitializeBrowser();
-            OpenAboutPage();
-            about.ScrollToGlance();
-            about.ClickDownload();
-            about.ScrollToTeam();
-            string[] downloadedFiles = Directory.GetFiles(downloadDirectory);
-            bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
-            Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
+                InitializeBrowser();
+                OpenAboutPage();
+                about.ScrollToGlance();
+                about.ClickDownload();
+                about.ScrollToTeam();
+                string[] downloadedFiles = Directory.GetFiles(downloadDirectory);
+                bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
+                Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _testFailed = true;
+                Log.Error(ex, $"Error durante la prueba con {filename}", ex.Message);
                 throw;
             }
         }
@@ -99,17 +102,18 @@ namespace TASk_loc1.Tests
             try
             {
                 Log.Information("Starting Carousel test");
-            InitializeBrowser();
-            OpenInsightsPage();
-            insights.ClickArrow();
-            string articleTitle = insights.GetArticleTitle();
-            insights.ReadMore();
-            string articlePageTitle = article.GetTitleText();
-            Assert.Equal(articleTitle, articlePageTitle);
+                InitializeBrowser();
+                OpenInsightsPage();
+                insights.ClickArrow();
+                string articleTitle = insights.GetArticleTitle();
+                insights.ReadMore();
+                string articlePageTitle = article.GetTitleText();
+                Assert.Equal(articleTitle, articlePageTitle);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _testFailed = true;
+                Log.Error(ex, $"Error durante la prueba de carrusel", ex.Message);
                 throw;
             }
         }
