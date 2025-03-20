@@ -1,5 +1,6 @@
 using TASk_loc1.PageObjects;
 using Xunit;
+using Serilog;
 
 namespace TASk_loc1.Tests
 {
@@ -28,6 +29,9 @@ namespace TASk_loc1.Tests
         [InlineData("html")]
         public void CareersTest(string lang)
         {
+            Log.Information("Error durante la prueba UC1finaally");
+            Log.Error("Error durante la prueba UC1since from webdrisvc");
+            Log.Debug("Error durante la prueba UC1 aca ok el log");
             InitializeBrowser();
             OpenCareersPage();
             epamCareers.SearchDetails(lang);

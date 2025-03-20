@@ -1,6 +1,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using Serilog;
 using System;
 using TASk_loc1.Core;
 
@@ -11,12 +12,22 @@ namespace TASk_loc1.Tests
 		protected IWebDriver driver;
 		protected WebDriverWait wait ;
 		protected string downloadDirectory;
+        protected string logDirectory;
 
-		public WebDriverService(bool headless = false)
+        public WebDriverService(bool headless = true)
 		{
 			downloadDirectory = Path.Combine(
                 Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
                 "Downloads");
+         /*   downloadDirectory = Path.Combine(
+                Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
+                "Downloads");*/
+            string logFilePath = Path.Combine(downloadDirectory, "log-.txt");
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.File(logFilePath)
+            .CreateLogger();
+
             driver = BrowserFactory.CreateWebDriver("chrome", downloadDirectory, headless);
 			wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 		}
