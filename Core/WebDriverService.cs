@@ -19,15 +19,13 @@ namespace TASk_loc1.Tests
 			downloadDirectory = Path.Combine(
                 Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
                 "Downloads");
-         /*   downloadDirectory = Path.Combine(
-                Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
-                "Downloads");*/
-            string logFilePath = Path.Combine(downloadDirectory, "log-.txt");
+            logDirectory = Path.Combine(
+                   Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
+                   "Core/Logs/log-.txt");
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
-            .WriteTo.File(logFilePath)
+            .WriteTo.File(logDirectory)
             .CreateLogger();
-
             driver = BrowserFactory.CreateWebDriver("chrome", downloadDirectory, headless);
 			wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 		}

@@ -29,9 +29,7 @@ namespace TASk_loc1.Tests
         [InlineData("html")]
         public void CareersTest(string lang)
         {
-            Log.Information("Error durante la prueba UC1finaally");
-            Log.Error("Error durante la prueba UC1since from webdrisvc");
-            Log.Debug("Error durante la prueba UC1 aca ok el log");
+            Log.Information("Starting Career test");
             InitializeBrowser();
             OpenCareersPage();
             epamCareers.SearchDetails(lang);
@@ -45,6 +43,7 @@ namespace TASk_loc1.Tests
         [InlineData("Automation")]
         public void SearchTest(string word)
         {
+            Log.Information("Starting Global search test");
             InitializeBrowser();
             PerformGlobalSearch(word);
             Assert.True(globalResults.AreAllResultsContainingTerm(word),
@@ -55,6 +54,7 @@ namespace TASk_loc1.Tests
         [InlineData("EPAM_Corporate_Overview_Q4FY-2024")]
         public void DownloadTest(string filename)
         {
+            Log.Information("Starting Download pdf test");
             InitializeBrowser();
             OpenAboutPage();
             about.ScrollToGlance();
@@ -68,6 +68,7 @@ namespace TASk_loc1.Tests
         [Fact]
         public void CarouselTest()
         {
+            Log.Information("Starting Carousel test");
             InitializeBrowser();
             OpenInsightsPage();
             insights.ClickArrow();
