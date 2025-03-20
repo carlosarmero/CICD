@@ -1,9 +1,12 @@
 ﻿using TASk_loc1.PageObjects;
 using TASk_loc1.Core;
+using OpenQA.Selenium;
+using Screens.TestFramework.Core.BrowserUtils;
+using System.Threading.Tasks;
 
 namespace TASk_loc1.Tests
 {
-    public abstract class BaseTest : WebDriverService
+    public abstract class BaseTest : WebDriverService, IDisposable
     {
         private readonly EpamPage epam;
 
@@ -22,5 +25,12 @@ namespace TASk_loc1.Tests
         protected void OpenAboutPage() => epam.OpenAbout();
         protected void OpenInsightsPage() => epam.OpenInsights();
         protected void PerformGlobalSearch(string searchTerm) => epam.GlobalSearchInfo(searchTerm);
+
+        public void Dispose()
+        {
+            TakeBrowserScreenshot(driver as ITakesScreenshot);
+            driver.Quit();
+            driver.Dispose();
+        }
     }
 }

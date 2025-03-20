@@ -1,6 +1,7 @@
 using TASk_loc1.PageObjects;
 using Xunit;
 using Serilog;
+using OpenQA.Selenium;
 
 namespace TASk_loc1.Tests
 {

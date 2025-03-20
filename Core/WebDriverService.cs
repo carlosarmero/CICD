@@ -1,14 +1,15 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using Screens.TestFramework.Core.BrowserUtils;
 using Serilog;
 using System;
 using TASk_loc1.Core;
 
 namespace TASk_loc1.Tests
 {
-	public class WebDriverService : IDisposable
-	{
+	public class WebDriverService : ScreenshotMaker
+    {
 		protected IWebDriver driver;
 		protected WebDriverWait wait ;
 		protected string downloadDirectory;
@@ -28,11 +29,6 @@ namespace TASk_loc1.Tests
             .CreateLogger();
             driver = BrowserFactory.CreateWebDriver("chrome", downloadDirectory, headless);
 			wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-		}
-		public void Dispose()
-		{
-			driver.Quit();
-			driver.Dispose();
 		}
 	}
 }
