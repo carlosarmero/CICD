@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium.Support.UI;
 using Screens.TestFramework.Core.BrowserUtils;
 using Serilog;
-using System;
+//using Serilog.Sinks.Console;
 using TASk_loc1.Core;
 
 namespace TASk_loc1.Tests
@@ -40,6 +40,7 @@ namespace TASk_loc1.Tests
 
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Is(GetLogLevel(minLogLevel))
+            //.WriteTo.Console()
             .WriteTo.File(logDirectory)
             .CreateLogger();
             driver = BrowserFactory.CreateWebDriver("chrome", downloadDirectory, headless);
