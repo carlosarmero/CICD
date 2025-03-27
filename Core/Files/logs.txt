@@ -1,0 +1,58 @@
+2025-03-26 16:38:30.911 -05:00 [ERR] Error durante la prueba con c#
+OpenQA.Selenium.WebDriverTimeoutException: Timed out after 30 seconds
+ ---> OpenQA.Selenium.NoSuchElementException: Unable to locate element: #new_form_job_search\-keyword; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)
+   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)
+   at OpenQA.Selenium.WebDriver.FindElement(By by)
+   at TASk_loc1.PageObjects.CareerPage.<>c.<get_Keywords>b__4_0(IWebDriver d) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Business\CareerPage.cs:line 17
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)
+   --- End of inner exception stack trace ---
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)
+   at TASk_loc1.PageObjects.CareerPage.get_Keywords() in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Business\CareerPage.cs:line 17
+   at TASk_loc1.PageObjects.CareerPage.SearchDetails(String searchTerm) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Business\CareerPage.cs:line 25
+   at TASk_loc1.Tests.AllTest.CareersTest(String lang) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 71
+2025-03-27 13:12:10.816 -05:00 [INF] Starting Carousel test
+2025-03-27 13:13:44.568 -05:00 [INF] Starting Global search test
+2025-03-27 13:14:08.896 -05:00 [ERR] Error durante la prueba con Automation
+Xunit.Sdk.TrueException: Not all links contain the search term 'Automation'
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 83
+2025-03-27 13:16:22.840 -05:00 [INF] Starting Download pdf test
+2025-03-27 13:16:48.115 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 108
+2025-03-27 13:18:39.704 -05:00 [INF] Starting Download pdf test
+2025-03-27 13:18:56.905 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 108
+2025-03-27 13:19:30.395 -05:00 [INF] Starting Download pdf test
+2025-03-27 13:20:45.680 -05:00 [INF] Starting Global search test
+2025-03-27 13:21:05.687 -05:00 [ERR] Error durante la prueba con BLOCKCHAIN
+Xunit.Sdk.TrueException: Not all links contain the search term 'BLOCKCHAIN'
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 83
+2025-03-27 13:22:14.881 -05:00 [INF] Starting Global search test
+2025-03-27 13:22:34.413 -05:00 [ERR] Error durante la prueba con BLOCKCHAIN
+Xunit.Sdk.TrueException: Not all links contain the search term 'BLOCKCHAIN'
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 83
+2025-03-27 13:45:13.550 -05:00 [ERR] Error durante la prueba con BLOCKCHAIN
+Xunit.Sdk.TrueException: Not all links contain the search term 'BLOCKCHAIN'
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 83
+2025-03-27 13:46:42.016 -05:00 [INF] Starting Career test
+2025-03-27 13:50:32.843 -05:00 [INF] Starting Download pdf test

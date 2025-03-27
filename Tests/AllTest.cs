@@ -22,7 +22,7 @@ namespace TASk_loc1.Tests
         {
             filesDirectory = Path.Combine(
                    Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
-                   "Core/Logs/");
+                   "Core/Files/");
 
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(filesDirectory)
