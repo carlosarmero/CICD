@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace TASk_loc1.PageObjects
@@ -37,7 +38,8 @@ namespace TASk_loc1.PageObjects
 
         public void ScrollToSocial()
         {
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", Social);
+            Actions actions = new Actions(driver);
+            actions.ScrollByAmount(0, 1000).Perform();
         }
     }
 }

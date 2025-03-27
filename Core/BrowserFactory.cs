@@ -20,7 +20,10 @@ namespace TASk_loc1.Core
                     {
                         chromeOptions.AddArgument("--headless");
                     }
-                    chromeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
+                    if (downloadDirectory != null)
+                    {
+                        chromeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
+                    }
                     driver = new ChromeDriver(chromeOptions);
                     break;
 
@@ -30,7 +33,11 @@ namespace TASk_loc1.Core
                     {
                         firefoxOptions.AddArgument("--headless");
                     }
-                    firefoxOptions.AddAdditionalOption("download.default_directory", downloadDirectory);
+                    if (downloadDirectory != null)
+                    {
+                        firefoxOptions.AddAdditionalOption("download.default_directory", downloadDirectory);
+                    }
+                    
                     driver = new FirefoxDriver(firefoxOptions);
                     break;
 
@@ -40,8 +47,11 @@ namespace TASk_loc1.Core
                     {
                         edgeOptions.AddArgument("--headless");
                     }
-                    driver = new EdgeDriver(edgeOptions);
-                    edgeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
+                    if (downloadDirectory != null)
+                    {
+                        edgeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
+                    }
+                    driver = new EdgeDriver(edgeOptions);                    
                     break;
 
                 default:

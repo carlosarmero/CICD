@@ -2,6 +2,7 @@ using TASk_loc1.PageObjects;
 using Xunit;
 using Serilog;
 using OpenQA.Selenium;
+using Microsoft.Extensions.Configuration;
 
 namespace TASk_loc1.Tests
 {
@@ -14,17 +15,35 @@ namespace TASk_loc1.Tests
         private readonly AboutPage about;
         private readonly InsightsPage insights;
         private readonly Article article;
+        private readonly string filesDirectory;
 
         private bool _testFailed;
         public AllTest(): base() 
         {
-            epamCareers = new CareerPage(driver, wait);
-            epamResults = new CareerResults(driver, wait);
-            last = new LastResultPage(driver, wait);
-            globalResults = new GlobalResults(driver, wait);
-            about = new AboutPage(driver, wait);
-            insights = new InsightsPage(driver, wait);
-            article = new Article(driver, wait);
+            filesDirectory = Path.Combine(
+                   Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
+                   "Core/Logs/");
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(filesDirectory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            // Read minimum log level from configuration (defaults to Debug if not set)
+            string minLogLevel = configuration["Logging:LogLevel:Default"] ?? "Debug";
+
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Is(GetLogLevel(minLogLevel))
+            .WriteTo.File(filesDirectory)
+            .CreateLogger();
+            //driver = new WebDriverService(filesDirectory);
+            epamCareers = new CareerPage(driver.GetWebDriver(), driver.GetWebDriverWait());
+            epamResults = new CareerResults(driver.GetWebDriver(), driver.GetWebDriverWait());
+            last = new LastResultPage(driver.GetWebDriver(), driver.GetWebDriverWait());
+            globalResults = new GlobalResults(driver.GetWebDriver(), driver.GetWebDriverWait());
+            about = new AboutPage(driver.GetWebDriver(), driver.GetWebDriverWait());
+            insights = new InsightsPage(driver.GetWebDriver(), driver.GetWebDriverWait());
+            article = new Article(driver.GetWebDriver(), driver.GetWebDriverWait());
             _testFailed = false;
         }
 
@@ -84,7 +103,7 @@ namespace TASk_loc1.Tests
                 about.ScrollToGlance();
                 about.ClickDownload();
                 about.ScrollToTeam();
-                string[] downloadedFiles = Directory.GetFiles(downloadDirectory);
+                string[] downloadedFiles = Directory.GetFiles(filesDirectory);
                 bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
                 Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
             }
@@ -117,10 +136,21 @@ namespace TASk_loc1.Tests
                 throw;
             }
         }
-        public void Dispose()
+        public new void Dispose()
         {
-            if (_testFailed) { TakeBrowserScreenshot(driver as ITakesScreenshot);}
-            driver.Quit();
+            var pdfFiles = Directory.GetFiles(filesDirectory, "*.pdf");
+            foreach (var file in pdfFiles)
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error deleting file {file}: {ex.Message}");
+                }
+            }
+            //if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver as ITakesScreenshot);}
             driver.Dispose();
         }
     }
