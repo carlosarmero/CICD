@@ -34,7 +34,7 @@ namespace TASk_loc1.Tests
 
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Is(GetLogLevel(minLogLevel))
-            .WriteTo.File(filesDirectory)
+            .WriteTo.File(Path.Combine(filesDirectory, "Logs.txt"))
             .CreateLogger();
             //driver = new WebDriverService(filesDirectory);
             epamCareers = new CareerPage(driver.GetWebDriver(), driver.GetWebDriverWait());
