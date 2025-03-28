@@ -16,7 +16,6 @@ namespace TASk_loc1.Tests
         private readonly InsightsPage insights;
         private readonly Article article;
         private readonly string filesDirectory;
-
         private bool _testFailed;
         public AllTest(): base() 
         {
@@ -29,14 +28,13 @@ namespace TASk_loc1.Tests
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            // Read minimum log level from configuration (defaults to Debug if not set)
             string minLogLevel = configuration["Logging:LogLevel:Default"] ?? "Debug";
 
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Is(GetLogLevel(minLogLevel))
             .WriteTo.File(Path.Combine(filesDirectory, "Logs.txt"))
             .CreateLogger();
-            //driver = new WebDriverService(filesDirectory);
+
             epamCareers = new CareerPage(driver.GetWebDriver(), driver.GetWebDriverWait());
             epamResults = new CareerResults(driver.GetWebDriver(), driver.GetWebDriverWait());
             last = new LastResultPage(driver.GetWebDriver(), driver.GetWebDriverWait());
@@ -150,7 +148,7 @@ namespace TASk_loc1.Tests
                     Console.WriteLine($"Error deleting file {file}: {ex.Message}");
                 }
             }
-            //if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver as ITakesScreenshot);}
+            if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot);}
             driver.Dispose();
         }
     }
