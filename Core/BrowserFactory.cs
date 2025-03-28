@@ -1,8 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Edge;
-using System;
+using OpenQA.Selenium.Firefox;
 
 namespace TASk_loc1.Core
 {
@@ -37,7 +36,7 @@ namespace TASk_loc1.Core
                     {
                         firefoxOptions.AddAdditionalOption("download.default_directory", downloadDirectory);
                     }
-                    
+
                     driver = new FirefoxDriver(firefoxOptions);
                     break;
 
@@ -51,7 +50,7 @@ namespace TASk_loc1.Core
                     {
                         edgeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
                     }
-                    driver = new EdgeDriver(edgeOptions);                    
+                    driver = new EdgeDriver(edgeOptions);
                     break;
 
                 default:

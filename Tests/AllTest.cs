@@ -1,8 +1,7 @@
-using TASk_loc1.PageObjects;
-using Xunit;
-using Serilog;
-using OpenQA.Selenium;
 using Microsoft.Extensions.Configuration;
+using OpenQA.Selenium;
+using Serilog;
+using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
 {
@@ -17,7 +16,7 @@ namespace TASk_loc1.Tests
         private readonly Article article;
         private readonly string filesDirectory;
         private bool _testFailed;
-        public AllTest(): base() 
+        public AllTest() : base()
         {
             filesDirectory = Path.Combine(
                    Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
@@ -52,12 +51,12 @@ namespace TASk_loc1.Tests
         {
             try
             {
-            Log.Information("Starting Career test");
-            InitializeBrowser();
-            OpenCareersPage();
-            epamCareers.SearchDetails(lang);
-            epamResults.ClickLast();
-            Assert.Contains(lang, last.GetPageText());
+                Log.Information("Starting Career test");
+                InitializeBrowser();
+                OpenCareersPage();
+                epamCareers.SearchDetails(lang);
+                epamResults.ClickLast();
+                Assert.Contains(lang, last.GetPageText());
             }
             catch (Exception ex)
             {
@@ -148,7 +147,7 @@ namespace TASk_loc1.Tests
                     Console.WriteLine($"Error deleting file {file}: {ex.Message}");
                 }
             }
-            if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot);}
+            if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot); }
             driver.Dispose();
         }
     }

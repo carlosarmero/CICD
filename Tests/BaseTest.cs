@@ -1,8 +1,5 @@
-﻿using TASk_loc1.PageObjects;
-using TASk_loc1.Core;
-using OpenQA.Selenium;
-using Screens.TestFramework.Core.BrowserUtils;
-using System.Threading.Tasks;
+﻿using Screens.TestFramework.Core.BrowserUtils;
+using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
 {
