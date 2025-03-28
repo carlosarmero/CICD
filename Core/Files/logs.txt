@@ -94,3 +94,55 @@ OpenQA.Selenium.WebDriverException: The HTTP request to the remote WebDriver ser
 2025-03-28 09:36:47.634 -05:00 [INF] Starting Download pdf test
 2025-03-28 09:41:24.276 -05:00 [INF] Starting Download pdf test
 2025-03-28 09:44:01.397 -05:00 [INF] Starting Download pdf test
+2025-03-28 09:48:58.044 -05:00 [INF] Starting Download pdf test
+2025-03-28 09:49:53.961 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 105
+2025-03-28 10:01:11.915 -05:00 [INF] Starting Download pdf test
+2025-03-28 10:02:11.987 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+OpenQA.Selenium.WebDriverException: The HTTP request to the remote WebDriver server for URL http://localhost:55651/session/9432fff84a3dd45d6df132aa8017b8b7/url timed out after 60 seconds.
+ ---> System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 60 seconds elapsing.
+ ---> System.TimeoutException: The operation was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación..
+ ---> System.Net.Sockets.SocketException (995): La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.ExecuteAsync(Command commandToExecute)
+   --- End of inner exception stack trace ---
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.ExecuteAsync(Command commandToExecute)
+   at OpenQA.Selenium.Remote.DriverServiceCommandExecutor.ExecuteAsync(Command commandToExecute)
+   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Navigator.GoToUrlAsync(String url)
+   at OpenQA.Selenium.Navigator.<>c__DisplayClass6_0.<<GoToUrl>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OpenQA.Selenium.Navigator.GoToUrl(String url)
+   at TASk_loc1.PageObjects.EpamPage.GoWeb() in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Business\EpamPage.cs:line 28
+   at TASk_loc1.Tests.BaseTest.InitializeBrowser() in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\BaseTest.cs:line 36
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 82
+2025-03-28 10:07:39.148 -05:00 [INF] Starting Download pdf test
+2025-03-28 10:07:59.219 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 89
+2025-03-28 10:10:22.168 -05:00 [INF] Starting Download pdf test
+2025-03-28 10:11:17.438 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 89

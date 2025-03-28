@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using Serilog;
 using TASk_loc1.PageObjects;
@@ -14,26 +13,10 @@ namespace TASk_loc1.Tests
         private readonly AboutPage about;
         private readonly InsightsPage insights;
         private readonly Article article;
-        private readonly string filesDirectory;
+
         private bool _testFailed;
         public AllTest() : base()
         {
-            filesDirectory = Path.Combine(
-                   Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
-                   "Core/Files/");
-
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(filesDirectory)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .Build();
-
-            string minLogLevel = configuration["Logging:LogLevel:Default"] ?? "Debug";
-
-            Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Is(GetLogLevel(minLogLevel))
-            .WriteTo.File(Path.Combine(filesDirectory, "Logs.txt"))
-            .CreateLogger();
-
             epamCareers = new CareerPage(driver.GetWebDriver(), driver.GetWebDriverWait());
             epamResults = new CareerResults(driver.GetWebDriver(), driver.GetWebDriverWait());
             last = new LastResultPage(driver.GetWebDriver(), driver.GetWebDriverWait());
@@ -100,7 +83,7 @@ namespace TASk_loc1.Tests
                 about.ScrollToGlance();
                 about.ClickDownload();
                 about.ScrollToTeam();
-                string[] downloadedFiles = Directory.GetFiles(filesDirectory);
+                string[] downloadedFiles = Directory.GetFiles(GetFilePath());
                 bool fileContainsString = downloadedFiles.Any(file => Path.GetFileName(file).Contains(filename, StringComparison.OrdinalIgnoreCase));
                 Assert.True(fileContainsString, $"No file in the directory contains the string '{filename}' in its name.");
             }
@@ -135,7 +118,7 @@ namespace TASk_loc1.Tests
         }
         public new void Dispose()
         {
-            var pdfFiles = Directory.GetFiles(filesDirectory, "*.pdf");
+            var pdfFiles = Directory.GetFiles(GetFilePath(), "*.pdf");
             foreach (var file in pdfFiles)
             {
                 try

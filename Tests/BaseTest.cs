@@ -1,4 +1,6 @@
-﻿using Screens.TestFramework.Core.BrowserUtils;
+﻿using Microsoft.Extensions.Configuration;
+using Screens.TestFramework.Core.BrowserUtils;
+using Serilog;
 using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
@@ -7,10 +9,25 @@ namespace TASk_loc1.Tests
     {
         private readonly EpamPage epam;
         protected readonly WebDriverService driver;
-
+        private readonly string filesDirectory;
         public BaseTest()
         {
-            driver = new WebDriverService();
+            filesDirectory = Path.Combine(
+                   Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
+                   "Core/Files/");
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(filesDirectory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            string minLogLevel = configuration["Logging:LogLevel:Default"] ?? "Debug";
+
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Is(GetLogLevel(minLogLevel))
+            .WriteTo.File(Path.Combine(filesDirectory, "Logs.txt"))
+            .CreateLogger();
+            driver = new WebDriverService(filesDirectory);
             epam = new EpamPage(driver.GetWebDriver(), driver.GetWebDriverWait());
         }
 
@@ -24,7 +41,11 @@ namespace TASk_loc1.Tests
         protected void OpenAboutPage() => epam.OpenAbout();
         protected void OpenInsightsPage() => epam.OpenInsights();
         protected void PerformGlobalSearch(string searchTerm) => epam.GlobalSearchInfo(searchTerm);
-        // Helper method to convert string log level to Serilog level
+
+        public string GetFilePath()
+        {
+            return this.filesDirectory;
+        }
         public static Serilog.Events.LogEventLevel GetLogLevel(string level)
         {
             return level.ToLower() switch
