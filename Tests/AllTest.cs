@@ -44,7 +44,7 @@ namespace TASk_loc1.Tests
             catch (Exception ex)
             {
                 _testFailed = true;
-                Log.Error(ex, $"Error durante la prueba con {lang}", ex.Message);
+                Log.Error(ex, $"Error during test with {lang}", ex.Message);
                 throw;
             }
         }
@@ -66,7 +66,7 @@ namespace TASk_loc1.Tests
             catch (Exception ex)
             {
                 _testFailed = true;
-                Log.Error(ex, $"Error durante la prueba con {word}", ex.Message);
+                Log.Error(ex, $"Error during test with {word}", ex.Message);
                 throw;
             }
         }
@@ -90,7 +90,7 @@ namespace TASk_loc1.Tests
             catch (Exception ex)
             {
                 _testFailed = true;
-                Log.Error(ex, $"Error durante la prueba con {filename}", ex.Message);
+                Log.Error(ex, $"Error during test with {filename}", ex.Message);
                 throw;
             }
         }
@@ -112,13 +112,14 @@ namespace TASk_loc1.Tests
             catch (Exception ex)
             {
                 _testFailed = true;
-                Log.Error(ex, $"Error durante la prueba de carrusel", ex.Message);
+                Log.Error(ex, $"Error during carousel test", ex.Message);
                 throw;
             }
         }
         public void Dispose()
         {
             var pdfFiles = Directory.GetFiles(GetFilePath(), "*.pdf");
+            //var logDirectory = LogConfig.GetLogDirectory(configuration);
             foreach (var file in pdfFiles)
             {
                 try
@@ -127,7 +128,7 @@ namespace TASk_loc1.Tests
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error deleting file {file}: {ex.Message}");
+                    Log.Error(ex, $"Error deleting file {file}: {ex.Message}");
                 }
             }
             if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot, driver.Getconfig());}
