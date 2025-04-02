@@ -9,17 +9,36 @@ namespace Screens
         {
             public static void TakeBrowserScreenshot(ITakesScreenshot screen, WebDriverConfiguration config)
             {
-                var screenshotDirectory = Path.Combine(Directory.GetCurrentDirectory(), config.ScreenshotDirectory);
+                if (screen == null) throw new ArgumentNullException(nameof(screen));
+                if (config == null) throw new ArgumentNullException(nameof(config));
+
+                var screenshotDirectory = GetScreenshotDirectory(config.ScreenshotDirectory);
+                var screenshotPath = GetScreenshotPath(config, screenshotDirectory);
+
+                SaveScreenshot(screen, screenshotPath);
+            }
+
+            private static string GetScreenshotDirectory(string relativeDirectory)
+            {
+                var screenshotDirectory = Path.Combine(Directory.GetCurrentDirectory(), relativeDirectory);
                 if (!Directory.Exists(screenshotDirectory))
                 {
                     Directory.CreateDirectory(screenshotDirectory);
                 }
-                var timestampFormat = config.ScreenshotTimestampFormat;
-                var now = DateTime.Now.ToString(timestampFormat);
-                var fileName = config.ScreenshotFileName;
+                return screenshotDirectory;
+            }
 
-                var screenshotPath = Path.Combine(screenshotDirectory, $"{fileName}_{now}.png");
-                screen.GetScreenshot().SaveAsFile(screenshotPath);
+            private static string GetScreenshotPath(WebDriverConfiguration config, string screenshotDirectory)
+            {
+                var timestamp = DateTime.UtcNow.ToString(config.ScreenshotTimestampFormat);
+                var fileName = config.ScreenshotFileName;
+                return Path.Combine(screenshotDirectory, $"{fileName}_{timestamp}.png");
+            }
+
+            private static void SaveScreenshot(ITakesScreenshot screen, string screenshotPath)
+            {
+                var screenshot = screen.GetScreenshot();
+                screenshot.SaveAsFile(screenshotPath);
             }
         }
     }

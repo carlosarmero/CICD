@@ -9,7 +9,7 @@ namespace TASk_loc1.Core
         public TimeSpan ExplicitWait { get; set; } = TimeSpan.FromSeconds(30);
         public TimeSpan AsynchronousJavascriptTimeout { get; set; } = TimeSpan.FromSeconds(60);
         public bool IsHeadless { get; set; } = true;
-        public BrowserType BrowserType { get; set; } = BrowserType.Firefox;
+        public BrowserType BrowserType { get; set; }
         public string DownloadDirectory { get; set; }
         public string ScreenshotDirectory { get; set; }
         public string ScreenshotTimestampFormat { get; set; } = "yyyyMMddHHmmssfff";
