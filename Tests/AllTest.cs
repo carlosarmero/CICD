@@ -13,7 +13,6 @@ namespace TASk_loc1.Tests
         private readonly AboutPage about;
         private readonly InsightsPage insights;
         private readonly Article article;
-
         private bool _testFailed;
         public AllTest() : base()
         {
