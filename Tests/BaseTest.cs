@@ -10,22 +10,24 @@ namespace TASk_loc1.Tests
     {
         private readonly EpamPage epam;
         protected readonly WebDriverService driver;
-        private readonly string filesDirectory;
+        private readonly string settingsDirectory;
+        private readonly string downloadDirectory;
         private readonly WebDriverConfiguration webDriverConfig;
         public BaseTest()
         {
-            //filesDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            filesDirectory = Path.Combine(
+            settingsDirectory = Path.Combine(
                     Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
                     "Core/Files/");
             var configuration = new ConfigurationBuilder()
+                .SetBasePath(settingsDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .SetBasePath(filesDirectory)
                 .Build();
 
             webDriverConfig = new WebDriverConfiguration();
             configuration.GetSection("WebDriverConfiguration").Bind(webDriverConfig);
 
+            downloadDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), webDriverConfig.DownloadDirectory);
+            
             Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .CreateLogger();
@@ -47,7 +49,7 @@ namespace TASk_loc1.Tests
 
         public string GetFilePath()
         {
-            return this.filesDirectory;
+            return this.downloadDirectory;
         }
     }
 }
