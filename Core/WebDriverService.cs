@@ -8,10 +8,12 @@ namespace TASk_loc1.Tests
     {
         protected IWebDriver _driver;
         protected WebDriverWait _wait;
-        public WebDriverService(string downloadDirectory = null, bool headless = false)
+        protected WebDriverConfiguration _config;
+        public WebDriverService(WebDriverConfiguration config)
         {
-            _driver = BrowserFactory.CreateWebDriver("chrome", downloadDirectory, headless);
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+            _config = config;
+            _driver = BrowserFactory.CreateWebDriver(_config);
+            _wait = new WebDriverWait(_driver, _config.ExplicitWait);
         }
         public IWebDriver GetWebDriver() => _driver;
         public WebDriverWait GetWebDriverWait() => _wait;

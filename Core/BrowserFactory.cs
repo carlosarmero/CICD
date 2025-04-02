@@ -7,59 +7,59 @@ namespace TASk_loc1.Core
 {
     public static class BrowserFactory
     {
-        public static IWebDriver CreateWebDriver(string browserType, string downloadDirectory, bool headless = true)
+        public static IWebDriver CreateWebDriver(WebDriverConfiguration config)
         {
             IWebDriver driver;
 
-            switch (browserType.ToLower())
+            switch (config.BrowserType)
             {
-                case "chrome":
+                case BrowserType.Chrome:
                     var chromeOptions = new ChromeOptions();
-                    if (headless)
+                    if (config.IsHeadless)
                     {
                         chromeOptions.AddArgument("--headless");
                     }
-                    if (downloadDirectory != null)
+                    if (config.DownloadDirectory != null)
                     {
-                        chromeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
+                        chromeOptions.AddUserProfilePreference("download.default_directory", config.DownloadDirectory);
                     }
                     driver = new ChromeDriver(chromeOptions);
                     break;
 
-                case "firefox":
+                case BrowserType.Firefox:
                     var firefoxOptions = new FirefoxOptions();
-                    if (headless)
+                    if (config.IsHeadless)
                     {
                         firefoxOptions.AddArgument("--headless");
                     }
-                    if (downloadDirectory != null)
+                    if (config.DownloadDirectory != null)
                     {
-                        firefoxOptions.AddAdditionalOption("download.default_directory", downloadDirectory);
+                        firefoxOptions.AddAdditionalOption("download.default_directory", config.DownloadDirectory);
                     }
-
                     driver = new FirefoxDriver(firefoxOptions);
                     break;
 
-                case "edge":
+                case BrowserType.Edge:
                     var edgeOptions = new EdgeOptions();
-                    if (headless)
+                    if (config.IsHeadless)
                     {
                         edgeOptions.AddArgument("--headless");
                     }
-                    if (downloadDirectory != null)
+                    if (config.DownloadDirectory != null)
                     {
-                        edgeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
+                        edgeOptions.AddUserProfilePreference("download.default_directory", config.DownloadDirectory);
                     }
                     driver = new EdgeDriver(edgeOptions);
                     break;
 
                 default:
-                    throw new ArgumentException($"Unsupported browser type: {browserType}");
+                    throw new ArgumentException($"Unsupported browser type: {config.BrowserType}");
             }
 
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(5);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(60);
+            // Use the timeouts defined in the configuration
+            driver.Manage().Timeouts().PageLoad = config.PageLoadTimeout;
+            driver.Manage().Timeouts().ImplicitWait = config.ImplicitWait;
+            driver.Manage().Timeouts().AsynchronousJavaScript = config.AsynchronousJavascriptTimeout;
 
             return driver;
         }

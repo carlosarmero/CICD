@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Screens.TestFramework.Core.BrowserUtils;
 using Serilog;
+using TASk_loc1.Core;
 using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
@@ -10,6 +11,7 @@ namespace TASk_loc1.Tests
         private readonly EpamPage epam;
         protected readonly WebDriverService driver;
         private readonly string filesDirectory;
+        private readonly WebDriverConfiguration webDriverConfig;
         public BaseTest()
         {
             filesDirectory = Path.Combine(
@@ -21,13 +23,16 @@ namespace TASk_loc1.Tests
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
+            webDriverConfig = new WebDriverConfiguration();
+            configuration.GetSection("WebDriverConfiguration").Bind(webDriverConfig);
+
             string minLogLevel = configuration["Logging:LogLevel:Default"] ?? "Debug";
 
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Is(GetLogLevel(minLogLevel))
             .WriteTo.File(Path.Combine(filesDirectory, "Logs.txt"))
             .CreateLogger();
-            driver = new WebDriverService(filesDirectory);
+            driver = new WebDriverService(webDriverConfig);
             epam = new EpamPage(driver.GetWebDriver(), driver.GetWebDriverWait());
         }
 

@@ -146,3 +146,15 @@ Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corp
    at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
    at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
    at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 89
+2025-04-01 19:37:56.465 -05:00 [INF] Starting Global search test
+2025-04-01 19:38:22.135 -05:00 [ERR] Error durante la prueba con Automation
+Xunit.Sdk.TrueException: Not all links contain the search term 'Automation'
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 63
+2025-04-01 20:02:35.244 -05:00 [INF] Starting Global search test
+2025-04-01 20:02:48.958 -05:00 [ERR] Error durante la prueba con Automation
+Xunit.Sdk.TrueException: Not all links contain the search term 'Automation'
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 63
