@@ -253,3 +253,16 @@ Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corp
    at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
    at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
    at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 22:16:29.455 -05:00 [INF] Starting Download pdf test
+2025-04-01 22:16:48.079 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 22:52:20.851 -05:00 [INF] Starting Carousel test
+2025-04-01 23:02:42.248 -05:00 [INF] Starting Download pdf test
+2025-04-01 23:02:56.415 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88

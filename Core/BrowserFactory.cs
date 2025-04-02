@@ -42,7 +42,7 @@
             }
             if (config.DownloadDirectory != null)
             {
-                chromeOptions.AddUserProfilePreference("download.default_directory", config.DownloadDirectory);
+                chromeOptions.AddUserProfilePreference("download.default_directory", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), config.DownloadDirectory));
             }
 
             return new ChromeDriver(chromeOptions);
