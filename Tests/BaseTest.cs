@@ -26,12 +26,10 @@ namespace TASk_loc1.Tests
             webDriverConfig = new WebDriverConfiguration();
             configuration.GetSection("WebDriverConfiguration").Bind(webDriverConfig);
 
-            string minLogLevel = configuration["Logging:LogLevel:Default"] ?? "Debug";
-
             Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Is(GetLogLevel(minLogLevel))
-            .WriteTo.File(Path.Combine(filesDirectory, "Logs.txt"))
+            .ReadFrom.Configuration(configuration)
             .CreateLogger();
+
             driver = new WebDriverService(webDriverConfig);
             epam = new EpamPage(driver.GetWebDriver(), driver.GetWebDriverWait());
         }
@@ -51,18 +49,5 @@ namespace TASk_loc1.Tests
         {
             return this.filesDirectory;
         }
-        public static Serilog.Events.LogEventLevel GetLogLevel(string level)
-        {
-            return level.ToLower() switch
-            {
-                "debug" => Serilog.Events.LogEventLevel.Debug,
-                "information" => Serilog.Events.LogEventLevel.Information,
-                "warning" => Serilog.Events.LogEventLevel.Warning,
-                "error" => Serilog.Events.LogEventLevel.Error,
-                "fatal" => Serilog.Events.LogEventLevel.Fatal,
-                _ => Serilog.Events.LogEventLevel.Debug,
-            };
-        }
-
     }
 }
