@@ -14,13 +14,11 @@ namespace TASk_loc1.Tests
         private readonly WebDriverConfiguration webDriverConfig;
         public BaseTest()
         {
-            filesDirectory = Path.Combine(
-                   Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
-                   "Core/Files/");
+            filesDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(filesDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .SetBasePath(filesDirectory)
                 .Build();
 
             webDriverConfig = new WebDriverConfiguration();
