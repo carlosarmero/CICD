@@ -119,7 +119,7 @@ namespace TASk_loc1.Tests
         public void Dispose()
         {
             var pdfFiles = Directory.GetFiles(GetFilePath(), "*.pdf");
-            //var logDirectory = LogConfig.GetLogDirectory(configuration);
+
             foreach (var file in pdfFiles)
             {
                 try

@@ -14,14 +14,14 @@
             private readonly WebDriverConfiguration webDriverConfig;
             public BaseTest()
             {
-                webDriverConfig = new WebDriverConfiguration();
                 filesDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
                 var configuration = new ConfigurationBuilder()
+                    .SetBasePath(filesDirectory)
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                     .Build();
 
-                
+                webDriverConfig = new WebDriverConfiguration();
                 configuration.GetSection("WebDriverConfiguration").Bind(webDriverConfig);
 
                 Log.Logger = new LoggerConfiguration()
