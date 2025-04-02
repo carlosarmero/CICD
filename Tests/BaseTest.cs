@@ -6,7 +6,7 @@ using TASk_loc1.PageObjects;
 
 namespace TASk_loc1.Tests
 {
-    public abstract class BaseTest : ScreenshotMaker, IDisposable
+    public abstract class BaseTest : ScreenshotMaker
     {
         private readonly EpamPage epam;
         protected readonly WebDriverService driver;
@@ -62,10 +62,6 @@ namespace TASk_loc1.Tests
                 "fatal" => Serilog.Events.LogEventLevel.Fatal,
                 _ => Serilog.Events.LogEventLevel.Debug,
             };
-        }
-        public void Dispose()
-        {
-            driver.Dispose();
         }
 
     }

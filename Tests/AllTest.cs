@@ -116,7 +116,7 @@ namespace TASk_loc1.Tests
                 throw;
             }
         }
-        public new void Dispose()
+        public void Dispose()
         {
             var pdfFiles = Directory.GetFiles(GetFilePath(), "*.pdf");
             foreach (var file in pdfFiles)
@@ -130,7 +130,7 @@ namespace TASk_loc1.Tests
                     Console.WriteLine($"Error deleting file {file}: {ex.Message}");
                 }
             }
-            if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot); }
+            if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot, driver.Getconfig());}
             driver.Dispose();
         }
     }

@@ -17,6 +17,7 @@ namespace TASk_loc1.Tests
         }
         public IWebDriver GetWebDriver() => _driver;
         public WebDriverWait GetWebDriverWait() => _wait;
+        public WebDriverConfiguration Getconfig () => _config;
 
         public void Dispose()
         {

@@ -158,3 +158,98 @@ Xunit.Sdk.TrueException: Not all links contain the search term 'Automation'
    at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
    at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
    at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 63
+2025-04-01 20:10:11.100 -05:00 [INF] Starting Global search test
+2025-04-01 20:13:59.740 -05:00 [INF] Starting Global search test
+2025-04-01 20:22:03.150 -05:00 [INF] Starting Global search test
+2025-04-01 20:22:20.863 -05:00 [ERR] Error durante la prueba con BLOCKCHAIN
+Xunit.Sdk.TrueException: Not all links contain the search term 'BLOCKCHAIN'
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.SearchTest(String word) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 63
+2025-04-01 20:53:32.358 -05:00 [INF] Starting Career test
+2025-04-01 20:55:03.279 -05:00 [ERR] Error durante la prueba con c#
+OpenQA.Selenium.WebDriverException: The HTTP request to the remote WebDriver server for URL http://localhost:60794/session/81d5e318-0434-4a51-ade5-6b0e5ce0ece2/element/4689a4c3-b916-40d9-8b7e-ecea8c1240b0/click timed out after 60 seconds.
+ ---> System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 60 seconds elapsing.
+ ---> System.TimeoutException: The operation was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación..
+ ---> System.Net.Sockets.SocketException (995): La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.ExecuteAsync(Command commandToExecute)
+   --- End of inner exception stack trace ---
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.ExecuteAsync(Command commandToExecute)
+   at OpenQA.Selenium.Remote.DriverServiceCommandExecutor.ExecuteAsync(Command commandToExecute)
+   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebDriver.InternalExecute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebElement.Execute(String commandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebElement.Click()
+   at TASk_loc1.PageObjects.EpamPage.OpenCareers() in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Business\EpamPage.cs:line 37
+   at TASk_loc1.Tests.BaseTest.OpenCareersPage() in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\BaseTest.cs:line 45
+   at TASk_loc1.Tests.AllTest.CareersTest(String lang) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 39
+2025-04-01 21:19:11.023 -05:00 [INF] Starting Career test
+2025-04-01 21:19:18.526 -05:00 [ERR] Error durante la prueba con c#
+OpenQA.Selenium.ElementNotInteractableException: Element <button id="onetrust-accept-btn-handler"> could not be scrolled into view
+   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)
+   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebDriver.InternalExecute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebElement.Execute(String commandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.WebElement.Click()
+   at TASk_loc1.PageObjects.EpamPage.AcceptCookies() in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Business\EpamPage.cs:line 33
+   at TASk_loc1.Tests.BaseTest.InitializeBrowser() in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\BaseTest.cs:line 42
+   at TASk_loc1.Tests.AllTest.CareersTest(String lang) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 38
+2025-04-01 21:27:29.667 -05:00 [INF] Starting Career test
+2025-04-01 21:28:23.270 -05:00 [INF] Starting Download pdf test
+2025-04-01 21:28:40.324 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 21:30:15.268 -05:00 [INF] Starting Download pdf test
+2025-04-01 21:30:30.304 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 21:35:24.064 -05:00 [INF] Starting Download pdf test
+2025-04-01 21:35:40.019 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 21:38:50.914 -05:00 [INF] Starting Download pdf test
+2025-04-01 21:39:06.713 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 21:56:18.502 -05:00 [INF] Starting Download pdf test
+2025-04-01 21:56:55.115 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 21:58:29.523 -05:00 [INF] Starting Download pdf test
+2025-04-01 21:58:49.262 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
+2025-04-01 22:05:11.078 -05:00 [INF] Starting Download pdf test
+2025-04-01 22:05:31.189 -05:00 [ERR] Error durante la prueba con EPAM_Corporate_Overview_Q4FY-2024
+Xunit.Sdk.TrueException: No file in the directory contains the string 'EPAM_Corporate_Overview_Q4FY-2024' in its name.
+   at Xunit.Assert.True(Nullable`1 condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 146
+   at Xunit.Assert.True(Boolean condition, String userMessage) in /_/src/xunit.assert/Asserts/BooleanAsserts.cs:line 128
+   at TASk_loc1.Tests.AllTest.DownloadTest(String filename) in C:\Users\carlos herrerra\source\repos\TASk loc1\TASk loc1\Tests\AllTest.cs:line 88
