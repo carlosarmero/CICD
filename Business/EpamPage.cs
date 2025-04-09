@@ -1,7 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace TASk_loc1.PageObjects
+namespace TASk_loc1.Business
+
 {
     class EpamPage
     {

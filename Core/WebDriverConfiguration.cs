@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TASk_loc1.Core
+﻿namespace TASk_loc1.Core
 {
     public class WebDriverConfiguration
     {

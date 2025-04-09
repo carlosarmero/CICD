@@ -1,38 +1,38 @@
-﻿    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    using OpenQA.Selenium.Edge;
-    using OpenQA.Selenium.Firefox;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 
-    namespace TASk_loc1.Core
+namespace TASk_loc1.Core
+{
+    public static class BrowserFactory
     {
-        public static class BrowserFactory
+        public static IWebDriver CreateWebDriver(WebDriverConfiguration config)
         {
-            public static IWebDriver CreateWebDriver(WebDriverConfiguration config)
-            {
-                IWebDriver driver;
+            IWebDriver driver;
 
-                switch (config.BrowserType)
-                {
-                    case BrowserType.Chrome:
+            switch (config.BrowserType)
+            {
+                case BrowserType.Chrome:
                     driver = CreateChromeDriver(config);
                     break;
-                    case BrowserType.Firefox:
+                case BrowserType.Firefox:
                     driver = CreateFirefoxDriver(config);
                     break;
-                    case BrowserType.Edge:
+                case BrowserType.Edge:
                     driver = CreateEdgeDriver(config);
                     break;
 
-                    default:
-                        throw new ArgumentException($"Unsupported browser type: {config.BrowserType}");
-                }
-
-                driver.Manage().Timeouts().PageLoad = config.PageLoadTimeout;
-                driver.Manage().Timeouts().ImplicitWait = config.ImplicitWait;
-                driver.Manage().Timeouts().AsynchronousJavaScript = config.AsynchronousJavascriptTimeout;
-
-                return driver;
+                default:
+                    throw new ArgumentException($"Unsupported browser type: {config.BrowserType}");
             }
+
+            driver.Manage().Timeouts().PageLoad = config.PageLoadTimeout;
+            driver.Manage().Timeouts().ImplicitWait = config.ImplicitWait;
+            driver.Manage().Timeouts().AsynchronousJavaScript = config.AsynchronousJavascriptTimeout;
+
+            return driver;
+        }
         private static IWebDriver CreateChromeDriver(WebDriverConfiguration config)
         {
             var chromeOptions = new ChromeOptions();

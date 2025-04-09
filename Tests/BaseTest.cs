@@ -1,8 +1,8 @@
-﻿    using Microsoft.Extensions.Configuration;
-    using Screens.TestFramework.Core.BrowserUtils;
-    using Serilog;
-    using TASk_loc1.Core;
-    using TASk_loc1.PageObjects;
+﻿using Microsoft.Extensions.Configuration;
+using Screens.TestFramework.Core.BrowserUtils;
+using Serilog;
+using TASk_loc1.Business;
+using TASk_loc1.Core;
 
 namespace TASk_loc1.Tests
 {
@@ -27,7 +27,7 @@ namespace TASk_loc1.Tests
             configuration.GetSection("WebDriverConfiguration").Bind(webDriverConfig);
 
             downloadDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), webDriverConfig.DownloadDirectory);
-            
+
             Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .CreateLogger();
