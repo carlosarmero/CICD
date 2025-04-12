@@ -8,16 +8,9 @@
         public TimeSpan AsynchronousJavascriptTimeout { get; set; } = TimeSpan.FromSeconds(60);
         public bool IsHeadless { get; set; } = true;
         public BrowserType BrowserType { get; set; }
-        public string DownloadDirectory { get; set; }
-        public string ScreenshotDirectory { get; set; }
-        public string ScreenshotTimestampFormat { get; set; } = "yyyyMMddHHmmssfff";
-        public string ScreenshotFileName { get; set; } = "screenshot";
-    }
-
-    public enum BrowserType
-    {
-        Chrome,
-        Firefox,
-        Edge
+        public string DownloadDirectory { get; set; } = string.Empty;
+        public string ScreenshotDirectory { get; set; } = string.Empty;
+        public string ScreenshotTimestampFormat { get; set; } = string.Empty;
+        public string ScreenshotFileName { get; set; } = string.Empty;
     }
 }

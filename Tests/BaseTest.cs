@@ -15,9 +15,8 @@ namespace TASk_loc1.Tests
         private readonly WebDriverConfiguration webDriverConfig;
         public BaseTest()
         {
-            settingsDirectory = Path.Combine(
-                    Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName).FullName,
-                    "Core/Files/");
+            settingsDirectory = settingsDirectory = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "core", "files");
+
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(settingsDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
