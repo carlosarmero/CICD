@@ -9,10 +9,12 @@ namespace TASk_loc1.Tests
         protected IWebDriver _driver;
         protected WebDriverWait _wait;
         protected WebDriverConfiguration _config;
+        protected BrowserFactory _browserFactory;
         public WebDriverService(WebDriverConfiguration config)
         {
             _config = config;
-            _driver = BrowserFactory.CreateWebDriver(_config);
+            _browserFactory = new BrowserFactory(_config);
+            _driver = _browserFactory.CreateWebDriver();
             _wait = new WebDriverWait(_driver, _config.ExplicitWait);
         }
         public IWebDriver GetWebDriver() => _driver;

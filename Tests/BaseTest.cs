@@ -22,16 +22,13 @@ namespace TASk_loc1.Tests
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            webDriverConfig = new WebDriverConfiguration();
-            configuration.GetSection("WebDriverConfiguration").Bind(webDriverConfig);
-
-            downloadDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), webDriverConfig.DownloadDirectory);
+            downloadDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), configuration.GetSection("WebDriverConfiguration").Get<WebDriverConfiguration>().DownloadDirectory);
 
             Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .CreateLogger();
 
-            driver = new WebDriverService(webDriverConfig);
+            driver = new WebDriverService(configuration.GetSection("WebDriverConfiguration").Get<WebDriverConfiguration>());
             epam = new EpamPage(driver.GetWebDriver(), driver.GetWebDriverWait());
         }
 

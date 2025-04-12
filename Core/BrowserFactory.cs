@@ -5,35 +5,40 @@ using OpenQA.Selenium.Firefox;
 
 namespace TASk_loc1.Core
 {
-    public static class BrowserFactory
+    public class BrowserFactory
     {
-        public static IWebDriver CreateWebDriver(WebDriverConfiguration config)
+        private readonly WebDriverConfiguration _config;
+        public BrowserFactory(WebDriverConfiguration config)
+        {
+            _config = config;
+        }
+        public IWebDriver CreateWebDriver()
         {
             IWebDriver driver;
 
-            switch (config.BrowserType)
+            switch (_config.BrowserType)
             {
                 case BrowserType.Chrome:
-                    driver = CreateChromeDriver(config);
+                    driver = CreateChromeDriver(_config);
                     break;
                 case BrowserType.Firefox:
-                    driver = CreateFirefoxDriver(config);
+                    driver = CreateFirefoxDriver(_config);
                     break;
                 case BrowserType.Edge:
-                    driver = CreateEdgeDriver(config);
+                    driver = CreateEdgeDriver(_config);
                     break;
 
                 default:
-                    throw new ArgumentException($"Unsupported browser type: {config.BrowserType}");
+                    throw new ArgumentException($"Unsupported browser type: {_config.BrowserType}");
             }
 
-            driver.Manage().Timeouts().PageLoad = config.PageLoadTimeout;
-            driver.Manage().Timeouts().ImplicitWait = config.ImplicitWait;
-            driver.Manage().Timeouts().AsynchronousJavaScript = config.AsynchronousJavascriptTimeout;
+            driver.Manage().Timeouts().PageLoad = _config.PageLoadTimeout;
+            driver.Manage().Timeouts().ImplicitWait = _config.ImplicitWait;
+            driver.Manage().Timeouts().AsynchronousJavaScript = _config.AsynchronousJavascriptTimeout;
 
             return driver;
         }
-        private static IWebDriver CreateChromeDriver(WebDriverConfiguration config)
+        private IWebDriver CreateChromeDriver(WebDriverConfiguration config)
         {
             var chromeOptions = new ChromeOptions();
             if (config.IsHeadless)
@@ -48,7 +53,7 @@ namespace TASk_loc1.Core
             return new ChromeDriver(chromeOptions);
         }
 
-        private static IWebDriver CreateFirefoxDriver(WebDriverConfiguration config)
+        private IWebDriver CreateFirefoxDriver(WebDriverConfiguration config)
         {
             var firefoxOptions = new FirefoxOptions();
             if (config.IsHeadless)
@@ -64,7 +69,7 @@ namespace TASk_loc1.Core
             return new FirefoxDriver(firefoxOptions);
         }
 
-        private static IWebDriver CreateEdgeDriver(WebDriverConfiguration config)
+        private IWebDriver CreateEdgeDriver(WebDriverConfiguration config)
         {
             var edgeOptions = new EdgeOptions();
             if (config.IsHeadless)
