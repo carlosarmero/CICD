@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Screens.TestFramework.Core.BrowserUtils;
 using Serilog;
 using TASk_loc1.Business;
 using TASk_loc1.Core;
@@ -12,7 +11,6 @@ namespace TASk_loc1.Tests
         protected readonly WebDriverService driver;
         private readonly string settingsDirectory;
         private readonly string downloadDirectory;
-        //private readonly WebDriverConfiguration webDriverConfig;
         public BaseTest()
         {
             settingsDirectory = settingsDirectory = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "core", "files");
