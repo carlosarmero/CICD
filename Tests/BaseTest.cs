@@ -6,13 +6,13 @@ using TASk_loc1.Core;
 
 namespace TASk_loc1.Tests
 {
-    public abstract class BaseTest : ScreenshotMaker
+    public abstract class BaseTest
     {
         private readonly EpamPage epam;
         protected readonly WebDriverService driver;
         private readonly string settingsDirectory;
         private readonly string downloadDirectory;
-        private readonly WebDriverConfiguration webDriverConfig;
+        //private readonly WebDriverConfiguration webDriverConfig;
         public BaseTest()
         {
             settingsDirectory = settingsDirectory = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "core", "files");

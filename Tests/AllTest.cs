@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using Screens.TestFramework.Core.BrowserUtils;
 using Serilog;
 using TASk_loc1.Business;
 
@@ -130,7 +131,7 @@ namespace TASk_loc1.Tests
                     Log.Error(ex, $"Error deleting file {file}: {ex.Message}");
                 }
             }
-            if (_testFailed) { BaseTest.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot, driver.Getconfig()); }
+            if (_testFailed) { ScreenshotMaker.TakeBrowserScreenshot(driver.GetWebDriver() as ITakesScreenshot, driver.Getconfig()); }
             driver.Dispose();
         }
     }
