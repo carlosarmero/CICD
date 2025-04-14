@@ -20,10 +20,9 @@ namespace TASk_loc1.Core
                 PropertyNameCaseInsensitive = true
             };
         }
-
-        public RestResponse ExecuteRequest(RestRequest request)
+        public async Task<RestResponse> ExecuteRequestAsync(RestRequest request)
         {
-            return _client.Execute(request);
+            return await _client.ExecuteAsync(request);
         }
 
         public void Dispose()
