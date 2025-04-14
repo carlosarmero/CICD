@@ -39,23 +39,31 @@ namespace TASk_loc1.Tests
                 .Build();
 
             var response = await _apiClient.ExecuteRequestAsync(request);
-
-            Assert.Equal(200, (int)response.StatusCode);
+            Assert.Multiple(
+                () => Assert.NotNull(response),
+                () => Assert.Equal(200, (int)response.StatusCode),
+                () => Assert.NotNull(response.Content)
+             );
 
             var users = JsonSerializer.Deserialize<List<User>>(response.Content, _apiClient._jsonOptions);
 
-            Assert.NotEmpty(users);
-            foreach (var user in users)
+            Assert.Multiple(() =>
             {
-                Assert.NotNull(user.Id);
-                Assert.NotNull(user.Name);
-                Assert.NotNull(user.Username);
-                Assert.NotNull(user.Email);
-                Assert.NotNull(user.Address);
-                Assert.NotNull(user.Phone);
-                Assert.NotNull(user.Website);
-                Assert.NotNull(user.Company);
-            }
+                Assert.NotNull(users);
+                Assert.NotEmpty(users);
+
+                foreach (var user in users)
+                {
+                    Assert.NotNull(user.Id);
+                    Assert.NotNull(user.Name);
+                    Assert.NotNull(user.Username);
+                    Assert.NotNull(user.Email);
+                    Assert.NotNull(user.Address);
+                    Assert.NotNull(user.Phone);
+                    Assert.NotNull(user.Website);
+                    Assert.NotNull(user.Company);
+                }
+            });
         }
 
         [Fact]
@@ -68,14 +76,19 @@ namespace TASk_loc1.Tests
                 .WithResource("users")
                 .Build();
             var response = await _apiClient.ExecuteRequestAsync(request);
-
-            Assert.Equal(200, (int)response.StatusCode);
+            Assert.Multiple(
+                () => Assert.NotNull(response),
+                () => Assert.Equal(200, (int)response.StatusCode),
+                () => Assert.NotNull(response.Content)
+            );
 
             var contentTypeHeader = response?.ContentHeaders?
                 .FirstOrDefault(h => h.Name.Equals("Content-Type", StringComparison.OrdinalIgnoreCase));
-
-            Assert.NotNull(contentTypeHeader);
-            Assert.Equal("application/json; charset=utf-8", contentTypeHeader.Value.ToString());
+            Assert.Multiple(() =>
+            {
+                Assert.NotNull(contentTypeHeader);
+                Assert.Equal("application/json; charset=utf-8", contentTypeHeader.Value.ToString());
+            });
         }
 
         [Fact]
@@ -90,21 +103,30 @@ namespace TASk_loc1.Tests
 
             var response = await _apiClient.ExecuteRequestAsync(request);
 
-            Assert.Equal(200, (int)response.StatusCode);
+            Assert.Multiple(() =>
+            {
+                Assert.NotNull(response);
+                Assert.Equal(200, (int)response.StatusCode);
+                Assert.NotNull(response.Content);
+            });
 
             var users = JsonSerializer.Deserialize<List<User>>(response.Content, _apiClient._jsonOptions);
 
-            Assert.Equal(10, users?.Count);
-
-            var userIds = users?.Select(u => u.Id).Distinct().ToList();
-            Assert.Equal(users?.Count, userIds?.Count);
-
-            foreach (var user in users)
+            Assert.Multiple(() =>
             {
-                Assert.False(string.IsNullOrEmpty(user.Name), "User name is empty.");
-                Assert.False(string.IsNullOrEmpty(user.Username), "Username is empty.");
-                Assert.False(string.IsNullOrEmpty(user.Company?.Name), "Company name is empty.");
-            }
+                Assert.NotNull(users);
+                Assert.Equal(10, users?.Count);
+
+                var userIds = users?.Select(u => u.Id).Distinct().ToList();
+                Assert.Equal(users?.Count, userIds?.Count);
+
+                foreach (var user in users)
+                {
+                    Assert.False(string.IsNullOrEmpty(user.Name), "User name is empty.");
+                    Assert.False(string.IsNullOrEmpty(user.Username), "Username is empty.");
+                    Assert.False(string.IsNullOrEmpty(user.Company?.Name), "Company name is empty.");
+                }
+            });
         }
 
         [Theory]
@@ -126,12 +148,20 @@ namespace TASk_loc1.Tests
                 .WithJsonBody(newUser)
                 .Build();
             var response = await _apiClient.ExecuteRequestAsync(request);
-
-            Assert.Equal(201, (int)response.StatusCode);
+            Assert.Multiple(() =>
+            {
+                Assert.NotNull(response);
+                Assert.Equal(201, (int)response.StatusCode);
+                Assert.NotNull(response.Content);
+            });
 
             var createdUser = JsonSerializer.Deserialize<User>(response.Content, _apiClient._jsonOptions);
-            Assert.NotNull(createdUser);
-            Assert.NotNull(createdUser.Id);
+
+            Assert.Multiple(() =>
+            {
+                Assert.NotNull(createdUser);
+                Assert.NotNull(createdUser.Id);
+            });
         }
 
         [Fact]
@@ -144,7 +174,11 @@ namespace TASk_loc1.Tests
                 .WithResource("/invalidendpoint")
                 .Build();
             var response = await _apiClient.ExecuteRequestAsync(request);
-            Assert.Equal(404, (int)response.StatusCode);
+            Assert.Multiple(() =>
+            {
+                Assert.NotNull(response);
+                Assert.Equal(404, (int)response.StatusCode);
+            });
         }
         public void Dispose()
         {
