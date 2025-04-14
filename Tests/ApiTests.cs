@@ -2,7 +2,7 @@
 using RestSharp;
 using Serilog;
 using System.Text.Json;
-using TASk_loc1.Business;
+using TASk_loc1.Business.BOM;
 using TASk_loc1.Core;
 
 namespace TASk_loc1.Tests

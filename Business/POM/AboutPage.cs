@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
-namespace TASk_loc1.Business
+namespace TASk_loc1.Business.POM
 {
     class AboutPage
     {

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace TASk_loc1.Business
+namespace TASk_loc1.Business.POM
 
 {
     class LastResultPage

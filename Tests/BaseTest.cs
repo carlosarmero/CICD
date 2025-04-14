@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Serilog;
-using TASk_loc1.Business;
+using TASk_loc1.Business.POM;
 using TASk_loc1.Core;
 
 namespace TASk_loc1.Tests

@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using Screens.TestFramework.Core.BrowserUtils;
 using Serilog;
-using TASk_loc1.Business;
+using TASk_loc1.Business.POM;
 
 namespace TASk_loc1.Tests
 {
