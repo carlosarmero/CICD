@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       browser:
-        description: 'Browser to run UI tests (chrome, firefox, edge)'
+        description: 'Browser to run UI tests (chrome firefox edge)'
         required: true
         default: 'chrome'
         type: choice
@@ -36,11 +36,11 @@ jobs:
 
       # Install dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./Tasks.csproj
 
       # Build the solution
       - name: Build solution
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./Tasks.csproj --configuration Release --no-restore
 
       # Set up browser drivers (Chrome, Firefox, Edge)
       - name: Set up browser drivers
@@ -72,7 +72,7 @@ jobs:
       - name: Run UI tests
         id: ui-tests
         env:
-          BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
+          BROWSER: ${{ github.event.inputs.browser }}
         run: |
           dotnet test \
             --filter "Category!=API" \
