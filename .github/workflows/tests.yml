@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       browser:
-        description: 'Browser to run UI tests (chrome, firefox, edge)'
+        description: 'Browser to run UI tests (chrome firefox edge)'
         required: true
         default: 'chrome'
         type: choice
