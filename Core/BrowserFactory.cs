@@ -49,7 +49,8 @@ namespace TASk_loc1.Core
             {
                 chromeOptions.AddUserProfilePreference("download.default_directory", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), config.DownloadDirectory));
             }
-
+            chromeOptions.AddArgument("--no-sandbox");
+            chromeOptions.AddArgument("--disable-dev-shm-usage");
             return new ChromeDriver(chromeOptions);
         }
 

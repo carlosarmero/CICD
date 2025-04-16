@@ -1,0 +1,113 @@
+﻿name: Test Suite Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Browser to run UI tests (chrome, firefox, edge)'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
+          - edge
+
+jobs:
+  test-suite:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up .NET environment
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x' # Adjust to your .NET version
+
+      # Install dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Build the solution
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      # Set up browser drivers (Chrome, Firefox, Edge)
+      - name: Set up browser drivers
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 'stable'
+      - name: Set up Firefox
+        uses: browser-actions/setup-firefox@v1
+        with:
+          firefox-version: 'latest'
+      - name: Set up Edge
+        uses: browser-actions/setup-edge@v1
+        with:
+          edge-version: 'stable'
+
+      # Run API tests
+      - name: Run API tests
+        id: api-tests
+        run: |
+          dotnet test \
+            --filter "Category=API" \
+            --no-build \
+            --configuration Release \
+            --logger "trx;LogFileName=api-tests.trx" \
+            --results-directory ./test-results/api
+        continue-on-error: true # Continue even if API tests fail
+
+      # Run UI tests
+      - name: Run UI tests
+        id: ui-tests
+        env:
+          BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
+        run: |
+          dotnet test \
+            --filter "Category!=API" \
+            --no-build \
+            --configuration Release \
+            --logger "trx;LogFileName=ui-tests.trx" \
+            --results-directory ./test-results/ui \
+            /p:Browser=$BROWSER
+        continue-on-error: true # Continue even if UI tests fail
+
+      # Publish test results as artifacts
+      - name: Publish test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            test-results/**/*.trx
+            test-results/**/*.png
+            test-results/**/*.jpg
+          if-no-files-found: warn
+
+      # Publish screenshots as artifacts (if any)
+      - name: Publish screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: |
+            test-results/**/*.png
+            test-results/**/*.jpg
+          if-no-files-found: warn
+
+      # Fail the pipeline if any tests failed
+      - name: Check test results
+        run: |
+          if [ ${{ steps.api-tests.outcome }} == 'failure' ] || [ ${{ steps.ui-tests.outcome }} == 'failure' ]; then
+            echo "One or more tests failed."
+            exit 1
+          fi
