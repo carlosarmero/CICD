@@ -36,11 +36,11 @@ jobs:
 
       # Install dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./MyProject.csproj
 
       # Build the solution
       - name: Build solution
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./MyProject.csproj --configuration Release --no-restore
 
       # Set up browser drivers (Chrome, Firefox, Edge)
       - name: Set up browser drivers
