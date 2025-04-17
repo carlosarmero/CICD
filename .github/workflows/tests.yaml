@@ -27,7 +27,15 @@ jobs:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+         fetch-depth: 0 # Ensure full repository is checked out
 
+      - name: List files in repository
+        run: |
+          ls -R
+          find . -type f
+          echo "Checking for appsettings.json:"
+          ls -l core/files/appsettings.json || echo "File not found"
       # Set up .NET environment
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
