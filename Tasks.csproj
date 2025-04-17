@@ -14,7 +14,7 @@
     <!-- <Compile Include=".github\workflows\tests.yml" /> -->
   </ItemGroup>
  <ItemGroup>
-    <None Include="core/files/appsettings.json" Link="appsettings.json">
+    <None Include="$(MSBuildProjectDirectory)/core/files/appsettings.json" Link="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
 </ItemGroup>
