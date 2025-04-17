@@ -30,12 +30,14 @@ jobs:
         with:
          fetch-depth: 0 # Ensure full repository is checked out
 
-      - name: List files in repository
+      - name: Debug project structure
         run: |
-          ls -R
-          find . -type f
-          echo "Checking for appsettings.json:"
-          ls -l core/files/appsettings.json || echo "File not found"
+            echo "Current working directory: $(pwd)"
+            echo "Project contents:"
+            ls -la
+            echo "Looking for core/files:"
+            ls -la core/files || echo "core/files not found"
+
       # Set up .NET environment
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
