@@ -13,6 +13,12 @@
   <ItemGroup>
     <!-- <Compile Include=".github\workflows\tests.yml" /> -->
   </ItemGroup>
+ <ItemGroup>
+    <None Include="core\files\appsettings.json" Link="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+ </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
