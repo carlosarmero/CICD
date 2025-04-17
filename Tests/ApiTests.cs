@@ -10,14 +10,14 @@ namespace TASk_loc1.Tests
     public class UserApiTests : IDisposable
     {
         private readonly ApiBaseClient _apiClient;
-        private readonly string settingsDirectory;
+       // private readonly string settingsDirectory;
 
         public UserApiTests()
         {
-            settingsDirectory = settingsDirectory = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "core", "files");
+           // settingsDirectory = settingsDirectory = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "core", "files");
 
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(settingsDirectory)
+                .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
