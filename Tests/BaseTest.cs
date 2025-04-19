@@ -13,32 +13,7 @@ namespace TASk_loc1.Tests
         private readonly string downloadDirectory;
         public BaseTest()
         {
-            var potentialPaths = new[]
-           {
-               Path.Combine(AppContext.BaseDirectory, "..", "..", ".."),
-           // Directory.GetCurrentDirectory(),
-                "/home/runner/work/CICD/CICD/core/files" // GitHub Actions default
-            };
-
-            settingsDirectory = potentialPaths.FirstOrDefault(Directory.Exists);
-
-            if (settingsDirectory == null)
-            {
-                Console.WriteLine("❌ ERROR: Could not locate 'core/files' directory. Checked paths:");
-                foreach (var path in potentialPaths)
-                    Console.WriteLine($" - {path}");
-
-                throw new DirectoryNotFoundException("Could not find the 'core/files' directory.");
-            }
-
-            Console.WriteLine($"✅ Found settings directory at: {settingsDirectory}");
-
-            string configPath = Path.Combine(settingsDirectory, "appsettings.json");
-            if (!File.Exists(configPath))
-            {
-                Console.WriteLine($"❌ appsettings.json not found at: {configPath}");
-                throw new FileNotFoundException("appsettings.json is missing in core/files directory.");
-            }
+            settingsDirectory = settingsDirectory = Path.Combine(AppContext.BaseDirectory, "..", "..", "..");
 
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(settingsDirectory)
