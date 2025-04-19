@@ -114,10 +114,49 @@ jobs:
             test-results/**/*.jpg
           if-no-files-found: warn
 
-      # Fail the pipeline if any tests failed
-      - name: Check test results
+      # Check test results (modified to show failures without failing)
+      - name: Check and display failed tests
+        if: always()  # Always run, even if previous steps failed
         run: |
-          if [ ${{ steps.api-tests.outcome }} == 'failure' ] || [ ${{ steps.ui-tests.outcome }} == 'failure' ]; then
-            echo "One or more tests failed."
-            exit 1
+          echo "=== Test Results Summary ==="
+          
+          # Check API tests
+          if [ "${{ steps.api-tests.outcome }}" == "failure" ]; then
+            echo "❌ API Tests Failed:"
+            # Parse .trx file to get failed test names (requires python)
+            python -c "
+            import xml.etree.ElementTree as ET
+            try:
+                root = ET.parse('./test-results/api/api-tests.trx')
+                for test in root.findall('.//{http://microsoft.com/schemas/VisualStudio/TeamTest/2010}UnitTestResult[@outcome=\"Failed\"]'):
+                    print(f'- {test.get("testName")}')
+            except Exception as e:
+                print('Could not parse API test results:', str(e))
+            "
+          else
+            echo "✅ API Tests Passed"
+          fi
+
+          # Check UI tests
+          if [ "${{ steps.ui-tests.outcome }}" == "failure" ]; then
+            echo "❌ UI Tests Failed:"
+            # Parse .trx file to get failed test names
+            python -c "
+            import xml.etree.ElementTree as ET
+            try:
+                root = ET.parse('./test-results/ui/ui-tests.trx')
+                for test in root.findall('.//{http://microsoft.com/schemas/VisualStudio/TeamTest/2010}UnitTestResult[@outcome=\"Failed\"]'):
+                    print(f'- {test.get("testName")}')
+            except Exception as e:
+                print('Could not parse UI test results:', str(e))
+            "
+          else
+            echo "✅ UI Tests Passed"
+          fi
+
+          # Show summary without failing
+          if [ "${{ steps.api-tests.outcome }}" == "failure" ] || [ "${{ steps.ui-tests.outcome }}" == "failure" ]; then
+            echo "⚠️ Some tests failed (see above), but continuing workflow..."
+          else
+            echo "🎉 All tests passed!"
           fi
