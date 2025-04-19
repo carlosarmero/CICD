@@ -16,7 +16,7 @@ namespace TASk_loc1.Tests
             var potentialPaths = new[]
            {
                // Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "core", "files"),
-                Path.Combine(Directory.GetCurrentDirectory(), "core", "files"),
+                Directory.GetCurrentDirectory(),
                 "/home/runner/work/CICD/CICD/core/files" // GitHub Actions default
             };
 
