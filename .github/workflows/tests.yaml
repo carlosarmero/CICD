@@ -141,14 +141,14 @@ jobs:
             echo "❌ UI Tests Failed:"
             # Parse .trx file to get failed test names
             python -c "
-            import xml.etree.ElementTree as ET
-            try:
-                root = ET.parse('./test-results/ui/ui-tests.trx')
-                for test in root.findall('.//{http://microsoft.com/schemas/VisualStudio/TeamTest/2010}UnitTestResult[@outcome=\"Failed\"]'):
-                    print(f'- {test.get("testName")}')
-            except Exception as e:
-                print('Could not parse UI test results:', str(e))
-            "
+                import xml.etree.ElementTree as ET
+                try:
+                    root = ET.parse('./test-results/ui/ui-tests.trx')
+                    for test in root.findall('.//{http://microsoft.com/schemas/VisualStudio/TeamTest/2010}UnitTestResult[@outcome=\"Failed\"]'):
+                        print(f'- {test.get("testName")}')
+                except Exception as e:
+                    print('Could not parse UI test results:', str(e))
+                "
           else
             echo "✅ UI Tests Passed"
           fi
