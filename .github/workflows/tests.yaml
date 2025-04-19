@@ -120,20 +120,20 @@ jobs:
     
             # Check API tests
             if [ "${{ steps.api-tests.outcome }}" == "failure" ]; then
-              echo "❌ API Tests Failed:"
+              echo "❌ All or some API Tests Failed:"
               grep -oP '(?<=<UnitTestResult testName=")[^"]+(?=".*outcome="Failed")' ./test-results/api/api-tests.trx || \
                 echo "Check the 'test-results' artifact for details"
             else
-              echo "✅ API Tests Passed"
+              echo "✅ ALL API Tests Passed"
             fi
 
             # Check UI tests
             if [ "${{ steps.ui-tests.outcome }}" == "failure" ]; then
-              echo "❌ UI Tests Failed:"
+              echo "❌ All or some UI Tests Failed:"
               grep -oP '(?<=<UnitTestResult testName=")[^"]+(?=".*outcome="Failed")' ./test-results/ui/ui-tests.trx || \
                 echo "Check the 'test-results' artifact for details"
             else
-              echo "✅ UI Tests Passed"
+              echo "✅ All UI Tests Passed"
             fi
 
             echo "Test execution completed"
