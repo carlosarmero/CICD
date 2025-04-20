@@ -3,13 +3,12 @@ on:
   pull_request:
     branches:
       - main
-      - develop
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC
+    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       browser:
-        description: 'Browser to run UI tests (chrome, firefox, edge)'
+        description: 'Browser to run tests (chrome, firefox, edge)'
         required: true
         default: 'chrome'
         type: choice
@@ -27,7 +26,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-         fetch-depth: 0 # Ensure full repository is checked out
+         fetch-depth: 0
 
       - name: Debug project structure
         run: |
@@ -75,7 +74,7 @@ jobs:
             --configuration Release \
             --logger "trx;LogFileName=api-tests.trx" \
             --results-directory ./test-results/api
-        continue-on-error: true # Continue even if API tests fail
+        continue-on-error: true
 
       # Run UI tests
       - name: Run UI tests
@@ -90,7 +89,7 @@ jobs:
             --logger "trx;LogFileName=ui-tests.trx" \
             --results-directory ./test-results/ui \
             /p:Browser=$BROWSER
-        continue-on-error: true # Continue even if UI tests fail
+        continue-on-error: true
 
       # Publish test results as artifacts
       - name: Publish test results
@@ -99,16 +98,6 @@ jobs:
           name: test-results
           path: |
             test-results/**/*.trx
-            test-results/**/*.png
-            test-results/**/*.jpg
-          if-no-files-found: warn
-
-      # Publish screenshots as artifacts (if any)
-      - name: Publish screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: |
             test-results/**/*.png
             test-results/**/*.jpg
           if-no-files-found: warn
